@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		66AEEA33202157C700A6061A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 66AEEA32202157C700A6061A /* main.c */; };
+		F27EF7AD202184EF0067294F /* create.c in Sources */ = {isa = PBXBuildFile; fileRef = F27EF7AC202184EF0067294F /* create.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		66AEEA2F202157C700A6061A /* o2-thompson.1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "o2-thompson.1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AEEA32202157C700A6061A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F27EF7AB202184B80067294F /* create.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
+		F27EF7AC202184EF0067294F /* create.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = create.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				66AEEA32202157C700A6061A /* main.c */,
+				F27EF7AB202184B80067294F /* create.h */,
+				F27EF7AC202184EF0067294F /* create.c */,
 			);
 			path = "o2-thompson.1";
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66AEEA33202157C700A6061A /* main.c in Sources */,
+				F27EF7AD202184EF0067294F /* create.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
