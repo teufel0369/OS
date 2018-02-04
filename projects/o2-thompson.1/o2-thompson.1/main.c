@@ -81,10 +81,9 @@ int main(int argc, const char* argv[]) {
             
             createProcesses(childPid, testLine, testArgs, delim, pr_limit, pr_count); /* create the processes and execute the arguments */
         }
-        while(r_wait(NULL) > 0); /* waiting for all the remaining child processes to finish */
     }
     
-    
+    while(r_wait(NULL) > 0); /* waiting for all the remaining child processes to finish */
     return 0;
 }
 
