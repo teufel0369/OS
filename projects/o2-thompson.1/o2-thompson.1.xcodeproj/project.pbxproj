@@ -26,6 +26,8 @@
 /* Begin PBXFileReference section */
 		66AEEA2F202157C700A6061A /* o2-thompson.1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "o2-thompson.1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AEEA32202157C700A6061A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F20FC23D2026896800167094 /* testing.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = testing.data; sourceTree = "<group>"; };
+		F20FC23E2026CF2A00167094 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F27EF7AB202184B80067294F /* create.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
 		F27EF7AC202184EF0067294F /* create.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = create.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +65,8 @@
 				66AEEA32202157C700A6061A /* main.c */,
 				F27EF7AB202184B80067294F /* create.h */,
 				F27EF7AC202184EF0067294F /* create.c */,
+				F20FC23D2026896800167094 /* testing.data */,
+				F20FC23E2026CF2A00167094 /* README.md */,
 			);
 			path = "o2-thompson.1";
 			sourceTree = "<group>";

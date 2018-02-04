@@ -14,9 +14,7 @@
 #include "create.h"
 #include <limits.h>
 
-// GLOBALS (if any)
-
-// prototypes
+/* prototypes */
 void print_usage_statement(void);
 
 /*************************************************!
@@ -27,26 +25,31 @@ void print_usage_statement(void);
  **************************************************/
 int main(int argc, const char* argv[]) {
     FILE* filePtr;
-    char testData[10000];
+    
+    
     int opt = 0;
     int pr_limit = 0;
     int pr_count = 0;
+    int i;
     
-    // open the file
-    filePtr = fopen(argv[4], "r");
+    char* testFile = "/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.1/o2-thompson.1/testing.data";
+    
+    // open the file *** remember to change back to argv[4]
+    filePtr = fopen(testFile, "r");
     if(filePtr == NULL){
-        perror("proc_fan: Error: Failed to open the file");
+        perror("proc_fan: ERROR: Failed to open the file");
         exit(EXIT_FAILURE);
     }
     
-    // check the number of arguments supplied
-    if(argc != 5){
-        print_usage_statement();
-        exit(EXIT_FAILURE);
-    }
+    // check the number of arguments supplied *** must uncomment on submission
+//    if(argc != 5){
+//        print_usage_statement();
+//        exit(EXIT_FAILURE);
+//    }
+    
     
     // get the options from the argv array
-    while((opt = getopt(argc, argv, "n:")) != -1){
+    while((opt = getopt(argc, argv, ":n")) != -1){
         switch(opt){
             case 'n':
                 pr_limit = atoi(optarg);
@@ -62,38 +65,25 @@ int main(int argc, const char* argv[]) {
         }
     }
     
+    char testLine[100];
+    char** testArgs;
+    char* delim = "\n";
+    pid_t childPid;
+    
+    
     // read in the file of test data
     // feof checks the end of the file
     while(!feof(filePtr)) {
         
-    
-    // 1) if pr_count = pr_limit, 'wait' for a chid to finish and decrement
-        
         // if we can read in the file
-        if(fgets(testData, MAX_CANON, filePtr)) {
+        if(fgets(testLine, MAX_CANON, filePtr)) {
+            printf("%s", testLine); // test print data
             
-            
-        /*
-           2) read an line and execute program corresponding to that command line by
-              forking a child process (fork, makeargv, execvp)
-         
-           3) increment pr_count to track the number of active children processes
-        */
+            createProcesses(childPid, testLine, testArgs, delim, pr_limit, pr_count); /* create the processes and execute the arguments */
         }
-        
-        /*
-         4) Check to see if any of the children processes have finished
-            - 'waitpid' with 'WNOHANG' option
-         
-         5) Decrement pr_count for each completed child
-    
-        */
+        while(r_wait(NULL) > 0); /* waiting for all the remaining child processes to finish */
     }
     
-    /*
-     6) After EOF, wait for all the remaining children processes to finish
-        with 'wait' and then exit with EXIT_SUCCESS
-    */
     
     return 0;
 }
