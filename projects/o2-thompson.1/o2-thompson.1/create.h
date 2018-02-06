@@ -6,7 +6,8 @@
 #include  <sys/types.h>
 #include  <unistd.h>
 
-void createProcesses(pid_t, char[], char**, char*, int, int);
+pid_t createProcesses(pid_t, int);
+int whoAmI(pid_t);
 void free_makeargv(char**);
 int makeargv(const char*, const char*, char***);
 pid_t r_wait(int* stat_loc);

@@ -11,43 +11,15 @@
  * @function    createProcesses
  * @abstract    creates N child processes
  * @param       childPid   blank child
- * @param       testLine   array for each line
- * @param       testArgs   pointer to argument array
- * @param       delim      delimiter for separating args
  * @param       pr_limit   limit for number of processes
- * @param       pr_count   active processes
  **************************************************/
-void createProcesses(pid_t childPid, char testLine[], char** testArgs, char* delim, int pr_limit, int pr_count){
+pid_t createProcess(pid_t childPid, int pr_limit){
     int i;
+    for(i = 0; i < pr_limit; i++)
+        if((childPid = fork()) <= 0)
+            break;
     
-    for(i = 1; i < pr_limit; i++){
-        
-        if((childPid = fork()) <= 0) { /* must test with pid <= 0, otherwise fork bomb */
-            pr_count += 1;
-            
-            if(pr_count == pr_limit) {
-                childPid = wait(NULL);
-                pr_count -= 1;
-            }
-            
-            break; /* break the child process out of the loop */
-        }
-    }
-    
-    if(makeargv(testLine, delim, &testArgs) == -1) {
-        perror("proc_fan: ERROR: Failed to construct an argument array. Blew up at the makeargv function call in the main function.");
-        
-    } else {
-        printf("\n%s printed by child %1ld", testArgs[0], (long) getpid()); // **** just for debugging
-        
-        execvp(testArgs[0], &testArgs[0]);
-        
-        fprintf(stderr, "proc_fan: ERROR: Child %1ld failed to execute the command. Parent has a process ID of %1ld",
-                (long) getpid(), (long) getppid());
-        perror("");
-        
-    }
-    free_makeargv(testArgs); /* free the memory allocated for making the argument array */
+    return childPid;
 }
 
 /*************************************************!
@@ -130,5 +102,15 @@ pid_t r_wait(int* stat_loc){
     
     while(((retval = wait(stat_loc)) == -1) && (errno == EINTR));
     return retval;
+}
+
+int whoAmI(pid_t pid){
+    if(pid == 0) {
+        printf("Child %d  My Parent is %d \n\n", getpid(), getppid());
+    } else if(pid > 0){
+        printf("Parent %d \n\n", getpid());
+    }
+    
+    return 1;
 }
 
