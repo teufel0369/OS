@@ -86,7 +86,7 @@ int main(int argc, const char* argv[]) {
             pr_count -= 1;
         }
         
-        // if we can read in the file
+        // if we can read in the file ---- add an extra comment
         if(fgets(testLine, MAX_CANON, filePtr)) {
             
             if(makeargv(testLine, delim, &testArgs) == -1) {
