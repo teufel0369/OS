@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		66AEEA33202157C700A6061A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 66AEEA32202157C700A6061A /* main.c */; };
+		F20FC240202AD3C600167094 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = F20FC23F202AD3C600167094 /* Makefile */; };
 		F27EF7AD202184EF0067294F /* create.c in Sources */ = {isa = PBXBuildFile; fileRef = F27EF7AC202184EF0067294F /* create.c */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		66AEEA32202157C700A6061A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F20FC23D2026896800167094 /* testing.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = testing.data; sourceTree = "<group>"; };
 		F20FC23E2026CF2A00167094 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F20FC23F202AD3C600167094 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F27EF7AB202184B80067294F /* create.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
 		F27EF7AC202184EF0067294F /* create.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = create.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 				F27EF7AC202184EF0067294F /* create.c */,
 				F20FC23D2026896800167094 /* testing.data */,
 				F20FC23E2026CF2A00167094 /* README.md */,
+				F20FC23F202AD3C600167094 /* Makefile */,
 			);
 			path = "o2-thompson.1";
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F20FC240202AD3C600167094 /* Makefile in Sources */,
 				66AEEA33202157C700A6061A /* main.c in Sources */,
 				F27EF7AD202184EF0067294F /* create.c in Sources */,
 			);

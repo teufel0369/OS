@@ -35,15 +35,7 @@ int main(int argc, const char* argv[]) {
     int opt = 0;
     int pr_limit = DEFAULT_LIMIT;
     int pr_count = 1; // always start off with one child process
-    
-    char* testFile = "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/testing.data";
-    
-    // open the file *** remember to change back to argv[4]
-    filePtr = fopen(testFile, "r");
-    if(filePtr == NULL){
-        perror("\n\nproc_fan: ERROR: Failed to open the file");
-        exit(EXIT_FAILURE);
-    }
+
     
 //     check the number of arguments supplied *** must uncomment on submission
 //    if(argc != 5){
@@ -74,71 +66,51 @@ int main(int argc, const char* argv[]) {
     char* delim = "\n";
     int i = 0 ;
     pid_t childPid;
-    
-    /* Only way to process fan without fork-bombing */
-//    for(i = 0; i < pr_limit; i++){
-//        childPid = fork();
-//
-//        if(childPid == 0) {
-//            pr_count += 1;
-//            break;
-//        } else if(childPid < 0) {
-//            perror("\n\nproc_fan: ERROR: You've got to be forking me.... YOU FAILED TO FORK!");
-//        } else {
-//            waitpid(childPid, NULL, 0);
-//        }
-//    }
 
-    
     /* NOTE: YOU DO NOT NEED TO READ FROM A FILE... You're reading from std input.... so just use fgets in a while loop. Don't check for !feof(fPtr).
              */
     
-    while(!feof(filePtr)) {
-        whoAmI(childPid);
-        if(pr_count == pr_limit) {
-            perror("\n\nproc_fan: WARN: Hit maximum number of allowable processes");
+    while(fgets(testLine, MAX_CANON, stdin)){
+        
+        if(pr_count == pr_limit){
             fprintf(stderr, "Process %1d of %1d allowed", pr_count, pr_limit);
+            perror("\n\nproc_fan: WARN: Hit maximum number of allowable processes");
             childPid = wait(NULL);
             pr_count -= 1;
             
         } else {
-   
-            if(fgets(testLine, MAX_CANON, filePtr)){
             
-                childPid = fork();
-                
-                if(childPid == 0) {
-                    whoAmI(childPid);
-                    
-                    if(makeargv(testLine, delim, &testArgs) == -1){
-                        perror("\n\nproc_fan: ERROR: failed to construct argument array");
-                        
-                    } else {
-                       // execvp(testArgs[0], &testArgs[0]);
-                      //  fprintf(stderr, "proc_fan: ERROR: Child %1ld failed to execute the command.",(long)getpid());
-                      //  perror("");
-                        free_makeargv(testArgs); /* free the memory allocated for making the argument array */
-                        
-                    }
-                    
-                    exit(1);
-                }else if(childPid < 0) {
-                
-                    perror("\n\nproc_fan: ERROR: You failed to fork!");
-                
+            childPid = fork();
+            
+            if(childPid == 0){
+                whoAmI(childPid);
+                if(makeargv(testLine, delim, &testArgs) == -1){
+                    perror("\n\nproc_fan: ERROR: failed to construct argument array");
+
                 } else {
-                    whoAmI(childPid);
-                    
-                    while((childPid = waitpid(-1, NULL, WNOHANG))){ /* check to see if any children finished and decrement */
-                        if((childPid == -1) && (errno != EINTR)){
-                            break;
-                        }
+                   // execvp(testArgs[0], &testArgs[0]);
+                  // fprintf(stderr, "proc_fan: ERROR: Child %1ld failed to execute the command.",(long)getpid());
+                 //  perror("");
+                    free_makeargv(testArgs); /* free the memory allocated for making the argument array */
+                }
+                
+                exit(1);
+                
+            } else if (childPid < 0) {
+                perror("\n\nproc_fan: ERROR: You failed to fork!");
+                
+            } else {
+                while((childPid = waitpid(-1, NULL, WNOHANG))){ /* check to see if any children finished and decrement */
+                    if((childPid == -1) && (errno != EINTR)){
+                        break;
                     }
                 }
             }
         }
+        
+        while(r_wait(NULL) > 0); /* waiting for all the remaining child processes to finish */
     }
-    while(r_wait(NULL) > 0); /* waiting for all the remaining child processes to finish */
+    
     return 0;
 }
 
