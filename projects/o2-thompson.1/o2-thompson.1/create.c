@@ -1,9 +1,5 @@
 #include "create.h"
-#include  <stdio.h>
 #include <stdlib.h>
-#include  <sys/wait.h>
-#include  <sys/types.h>
-#include  <unistd.h>
 #include <errno.h>
 #include <string.h>
 
@@ -48,7 +44,7 @@ int makeargv(const char* s, const char* delims, char*** argvp) {
     int i;
     int numTokens;
     const char* startNewString;
-    char* t;
+    char* t = NULL;
     
     if((s == NULL) || (delims == NULL) || (argvp == NULL)){
         errno = EINVAL;

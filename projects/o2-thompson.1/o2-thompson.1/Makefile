@@ -9,13 +9,13 @@ EXECUTABLE=proc_fan
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-    $(CC) $(OBJECTS) -o $(EXECUTABLE)
+	$(CC) $(OBJECTS) -o $(EXECUTABLE)
 
 %.o: %.c $(HEADERS)
-$(CC) -c $(CFLAGS) $*.c -o $*.o
+	$(CC) -c $(CFLAGS) $*.c -o $*.o
 
 .PHONY: clean
 
 clean:
-rm *.o $(EXECUTABLE)
+	rm *.o $(EXECUTABLE)
 
