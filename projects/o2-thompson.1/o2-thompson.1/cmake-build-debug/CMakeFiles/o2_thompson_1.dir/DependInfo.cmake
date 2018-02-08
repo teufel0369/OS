@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/create.c" "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/cmake-build-debug/CMakeFiles/o2_thompson_1.dir/create.c.o"
   "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/main.c" "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/cmake-build-debug/CMakeFiles/o2_thompson_1.dir/main.c.o"
+  "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/testsim/test-sim_main.c" "/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/cmake-build-debug/CMakeFiles/o2_thompson_1.dir/testsim/test-sim_main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

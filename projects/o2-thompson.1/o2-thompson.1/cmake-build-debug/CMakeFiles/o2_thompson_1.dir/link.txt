@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/o2_thompson_1.dir/create.c.o CMakeFiles/o2_thompson_1.dir/main.c.o  -o o2_thompson_1 
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/o2_thompson_1.dir/create.c.o CMakeFiles/o2_thompson_1.dir/main.c.o CMakeFiles/o2_thompson_1.dir/testsim/test-sim_main.c.o  -o o2_thompson_1 
