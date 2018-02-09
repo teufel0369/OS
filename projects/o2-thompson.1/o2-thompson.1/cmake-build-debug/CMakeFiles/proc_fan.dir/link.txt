@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/proc_fan.dir/create.c.o CMakeFiles/proc_fan.dir/main.c.o CMakeFiles/proc_fan.dir/testsim/test-sim_main.c.o  -o proc_fan 

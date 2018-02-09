@@ -5,7 +5,7 @@
  *               number for an argument that reads a command or piped
  *               file from standard input.
  * Initial Commit: 30 January 2018
- * Github Repo: https://github.com/teufel0369/OS
+ * Github Repo: https://github.com/teufel0369/OS.git
  **********************************************************************/
 
 #include <unistd.h>
@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "create.h"
 #include <limits.h>
+#include <errno.h>
 
 /* GLOBALS */
 #define DEFAULT_LIMIT 5;
@@ -30,16 +31,16 @@ void print_usage_statement(void);
 int main(int argc, const char* argv[]) {
     
     int opt = 0;
-    int pr_limit = DEFAULT_LIMIT;
-    int pr_count = 1; // always start off with one child process
+    int pr_limit = 0;
+    int pr_count = 1; /* always start off with one child process */
 
     
     /* check the number of arguments supplied *** must uncomment on submission */
-   /* if(argc != 3){
-        perror("proc_fan: ERROR: Incorrect number of arguments");
+    if(argc != 3){
+        perror("\n\nproc_fan: ERROR: Incorrect number of arguments");
         print_usage_statement();
         exit(EXIT_FAILURE);
-    }*/
+    }
 
     
      /*get the options from the argv array*/
@@ -59,55 +60,49 @@ int main(int argc, const char* argv[]) {
         }
     }
 
-    const char* testLine[100]; /* **** NOTE: When this migrates to hoare, it may blow up because of this **** */
+    const char* testLine[100];
     char** testArgs = NULL;
-    char* delim = "\n";
+    char* delim = " \n";
     pid_t childPid;
+    int status;
+    pid_t returnPid;
     
     while(fgets(testLine, MAX_CANON, stdin)){
         childPid = fork(); /* fork some processes */
-        
+        pr_count += 1;
+
         /*  If pr_count is pr_limit, wait for a child to a child to finish and decrement pr_count */
         if(pr_count == pr_limit) {
-            perror("\n\nproc_fan: WARN: Hit maximum number of allowable processes");
-            r_wait(NULL);
+            r_wait((pid_t )0);
             pr_count -= 1;
         }
-
-        pr_count += 1;
         
         if(childPid == 0) { /* if this is the child process */
             if(makeargv(testLine, delim, &testArgs) == -1){
-                fprintf(stderr, "%s printed by Child %1ld. \n\n", testLine);
                 perror("\n\nproc_fan: ERROR: failed to construct argument array");
-                exit(EXIT_FAILURE); /* Fall through for when makeargv fails */
 
             } else {
-                whoAmI(childPid);
-                sleep(1);
-                fprintf(stderr, "%s printed by Child %1ld. Forked from Parent %1ld \n\n", testArgs[0], (long)getpid(), (long)getppid());
 
+                /* let the child process execute the test arguments */
                 if(execvp(testArgs[0], &testArgs[0])){
-                    perror("proc_fan: ERROR: Failed to exec");
                     free_makeargv(testArgs);
                     exit(EXIT_SUCCESS);
 
                 } else {
-                    fprintf(stderr, "proc_fan: ERROR: Child %1ld failed to execute the command.",(long)getpid());
-                    perror("");
+                    perror("\n\nproc_fan: ERROR: Failed to exec");
                     free_makeargv(testArgs);
                     exit(EXIT_FAILURE);
                 }
             }
+            exit(EXIT_FAILURE); /* Fall through for when makeargv fails */
 
         } else if(childPid < 0) { /* An error happened while trying to fork */
             perror("\n\nproc_fan: ERROR: You failed to fork!");
             free_makeargv(testArgs);
-            
-        } else {  /* This is the parent */
-            if(waitpid(-1, NULL, WNOHANG)){
-                pr_count -= 1;
-            }
+
+        } else if(childPid == (waitpid(-1, &status, WNOHANG))) { /* check to see if any child finished */
+            pr_count -= 1;
+            printf("\n\nProcess Count: %1d", pr_count);
         }
     }
 
@@ -121,8 +116,8 @@ int main(int argc, const char* argv[]) {
  * @abstract    Prints error and usage statement
  **************************************************/
 void print_usage_statement() {
-    char* error = "proc_fan: Error: You supplied an incorrect number of arguments.\n";
-    char* usage = "Usage: proc_fan -n NUMBER < file.data";
+    char* error = "\n\nproc_fan: Error: You supplied an incorrect number of arguments.";
+    char* usage = "\nUsage: proc_fan -n NUMBER < file.data";
     perror(error);
     perror(usage);
 }
