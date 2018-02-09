@@ -1,21 +1,25 @@
 CC=gcc
 CFLAGS = -g -Wall
 
-HEADERS=create.h
-SOURCE=create.c main.c
-OBJECTS=$(SOURCE:.c=.o)
-EXECUTABLE=proc_fan
+all: proc_fan testsim
 
-all: $(EXECUTABLE)
+proc_fan: main.o create.o
+	$(CC) $(CFLAGS) -o proc_fan main.o create.o
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(EXECUTABLE)
+main.o: main.c create.h
+	$(CC) $(CFLAGS) -c main.c
 
-%.o: %.c $(HEADERS)
-	$(CC) -c $(CFLAGS) $*.c -o $*.o
+create.o: create.c create.h
+	$(CC) $(CFLAGS) -c create.c
+
+testsim: test-sim_main.o
+	$(CC) $(CFLAGS) -o testsim test-sim_main.o
+
+test-sim_main.o: test-sim_main.c
+	$(CC) $(CFLAGS) -c test-sim_main.c
 
 .PHONY: clean
 
 clean:
-	rm *.o $(EXECUTABLE)
+	rm *.o proc_fan testsim
 

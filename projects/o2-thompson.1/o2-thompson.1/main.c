@@ -24,6 +24,7 @@ void print_usage_statement(void);
  * @function    main
  * @abstract    orchestrates the madness
  * @param       argc    number of arguments.
+ * @param       argv    array of arguments
  * @returns     0 if it runs correctly.
  **************************************************/
 int main(int argc, const char* argv[]) {
@@ -34,12 +35,12 @@ int main(int argc, const char* argv[]) {
 
     
     /* check the number of arguments supplied *** must uncomment on submission */
-//    if(argc != 3){
-//        perror("proc_fan: ERROR: Incorrect number of arguments");
-//        print_usage_statement();
-//        exit(EXIT_FAILURE);
-//    }
-//
+   /* if(argc != 3){
+        perror("proc_fan: ERROR: Incorrect number of arguments");
+        print_usage_statement();
+        exit(EXIT_FAILURE);
+    }*/
+
     
      /*get the options from the argv array*/
     while((opt = getopt(argc, argv, "n:")) != -1){
@@ -58,7 +59,7 @@ int main(int argc, const char* argv[]) {
         }
     }
 
-    const char* testLine[100]; /* **** NOTE: When this migrates to the server, it may blow up because of this **** */
+    const char* testLine[100]; /* **** NOTE: When this migrates to hoare, it may blow up because of this **** */
     char** testArgs = NULL;
     char* delim = "\n";
     pid_t childPid;
@@ -66,10 +67,10 @@ int main(int argc, const char* argv[]) {
     while(fgets(testLine, MAX_CANON, stdin)){
         childPid = fork(); /* fork some processes */
         
-        /* 1) If pr_count is pr_limit, wait for a child to a child to finish and decrement pr_count */
+        /*  If pr_count is pr_limit, wait for a child to a child to finish and decrement pr_count */
         if(pr_count == pr_limit) {
             perror("\n\nproc_fan: WARN: Hit maximum number of allowable processes");
-            r_wait(NULL); //
+            r_wait(NULL);
             pr_count -= 1;
         }
 
@@ -78,23 +79,27 @@ int main(int argc, const char* argv[]) {
         if(childPid == 0) { /* if this is the child process */
             if(makeargv(testLine, delim, &testArgs) == -1){
                 perror("\n\nproc_fan: ERROR: failed to construct argument array");
+                exit(EXIT_FAILURE); /* Fall through for when makeargv fails */
 
             } else {
-                whoAmI(childPid);  /* for testing to make  */
+                whoAmI(childPid);
+                sleep(1);
+                fprintf(stderr, "%s printed by Child %1ld. Forked from Parent %1ld \n\n", testArgs[0], (long)getpid(), (long)getppid());
+//                free_makeargv(testArgs);
+//                exit(EXIT_SUCCESS);
 
-//                if(execvp(testArgs[0], &testArgs[0])){
-//                  exit(EXIT_SUCCESS);
-//                  break;
-//
-//                } else {
-//                    fprintf(stderr, "proc_fan: ERROR: Child %1ld failed to execute the command.",(long)getpid());
-//                    perror("");
-//                }
-                free_makeargv(testArgs);
-                exit(EXIT_SUCCESS);
+                if(execvp(testArgs[0], &testArgs[0])){
+                    perror("proc_fan: ERROR: Failed to exec");
+                    free_makeargv(testArgs);
+                    exit(EXIT_SUCCESS);
+
+                } else {
+                    fprintf(stderr, "proc_fan: ERROR: Child %1ld failed to execute the command.",(long)getpid());
+                    perror("");
+                    free_makeargv(testArgs);
+                    exit(EXIT_FAILURE);
+                }
             }
-
-            exit(1); /* Fall through for when makeargv fails */
 
         } else if(childPid < 0) { /* An error happened while trying to fork */
             perror("\n\nproc_fan: ERROR: You failed to fork!");

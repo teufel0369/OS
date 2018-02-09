@@ -7,3 +7,5 @@ CMakeFiles/o2_thompson_1.dir/create.c.o: ../create.h
 CMakeFiles/o2_thompson_1.dir/main.c.o: ../create.h
 CMakeFiles/o2_thompson_1.dir/main.c.o: ../main.c
 
+CMakeFiles/o2_thompson_1.dir/testsim/test-sim_main.c.o: ../testsim/test-sim_main.c
+

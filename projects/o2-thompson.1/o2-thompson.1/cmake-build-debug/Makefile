@@ -177,33 +177,6 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/o2_thompson_1.dir/build.make CMakeFiles/o2_thompson_1.dir/main.c.s
 .PHONY : main.c.s
 
-testsim/test-sim_main.o: testsim/test-sim_main.c.o
-
-.PHONY : testsim/test-sim_main.o
-
-# target to build an object file
-testsim/test-sim_main.c.o:
-	$(MAKE) -f CMakeFiles/o2_thompson_1.dir/build.make CMakeFiles/o2_thompson_1.dir/testsim/test-sim_main.c.o
-.PHONY : testsim/test-sim_main.c.o
-
-testsim/test-sim_main.i: testsim/test-sim_main.c.i
-
-.PHONY : testsim/test-sim_main.i
-
-# target to preprocess a source file
-testsim/test-sim_main.c.i:
-	$(MAKE) -f CMakeFiles/o2_thompson_1.dir/build.make CMakeFiles/o2_thompson_1.dir/testsim/test-sim_main.c.i
-.PHONY : testsim/test-sim_main.c.i
-
-testsim/test-sim_main.s: testsim/test-sim_main.c.s
-
-.PHONY : testsim/test-sim_main.s
-
-# target to generate assembly for a file
-testsim/test-sim_main.c.s:
-	$(MAKE) -f CMakeFiles/o2_thompson_1.dir/build.make CMakeFiles/o2_thompson_1.dir/testsim/test-sim_main.c.s
-.PHONY : testsim/test-sim_main.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,9 +192,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... testsim/test-sim_main.o"
-	@echo "... testsim/test-sim_main.i"
-	@echo "... testsim/test-sim_main.s"
 .PHONY : help
 
 

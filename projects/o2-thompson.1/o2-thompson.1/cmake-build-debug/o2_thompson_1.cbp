@@ -91,9 +91,6 @@
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/main.c">
 			<Option target="o2_thompson_1"/>
 		</Unit>
-		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/testsim/test-sim_main.c">
-			<Option target="o2_thompson_1"/>
-		</Unit>
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.1/o2-thompson.1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

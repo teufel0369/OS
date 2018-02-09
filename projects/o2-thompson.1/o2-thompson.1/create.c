@@ -4,21 +4,6 @@
 #include <string.h>
 
 /*************************************************!
- * @function    createProcesses
- * @abstract    creates N child processes
- * @param       childPid   blank child
- * @param       pr_limit   limit for number of processes
- **************************************************/
-pid_t createProcess(pid_t childPid, int pr_limit){
-    int i;
-    for(i = 0; i < pr_limit; i++)
-        if((childPid = fork()) <= 0)
-            break;
-    
-    return childPid;
-}
-
-/*************************************************!
  * @function    free_makeargv
  * @abstract    frees the memory of the arg array
  *              that was allocated by makeargv()

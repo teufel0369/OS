@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(o2_thompson_1
         create.c
         create.h
-        main.c testsim/test-sim_main.c)
+        main.c)
