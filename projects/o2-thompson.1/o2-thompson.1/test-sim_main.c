@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <zconf.h>
 #include <stdio.h>
 
 /*************************************************!

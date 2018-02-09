@@ -78,6 +78,7 @@ int main(int argc, const char* argv[]) {
         
         if(childPid == 0) { /* if this is the child process */
             if(makeargv(testLine, delim, &testArgs) == -1){
+                fprintf(stderr, "%s printed by Child %1ld. \n\n", testLine);
                 perror("\n\nproc_fan: ERROR: failed to construct argument array");
                 exit(EXIT_FAILURE); /* Fall through for when makeargv fails */
 
@@ -85,8 +86,6 @@ int main(int argc, const char* argv[]) {
                 whoAmI(childPid);
                 sleep(1);
                 fprintf(stderr, "%s printed by Child %1ld. Forked from Parent %1ld \n\n", testArgs[0], (long)getpid(), (long)getppid());
-//                free_makeargv(testArgs);
-//                exit(EXIT_SUCCESS);
 
                 if(execvp(testArgs[0], &testArgs[0])){
                     perror("proc_fan: ERROR: Failed to exec");
