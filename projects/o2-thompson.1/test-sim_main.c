@@ -18,7 +18,7 @@ int main(int argc, const char* argv[]) {
 
     for(i = 0; i < numIterations; i++){
         sleep((int)sleepTime);
-        fprintf(stderr, "\nPID %1ld PPID %1ld ran testsim %1d %1d ", (long)getpid(), (long)getppid(), sleepTime, numIterations);
+        fprintf(stderr, "\nPID %1ld with PPID %1ld RAN testsim %1d %1d ", (long)getpid(), (long)getppid(), sleepTime, numIterations);
         perror("");
 
     }
