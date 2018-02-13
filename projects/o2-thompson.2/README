@@ -1,0 +1,26 @@
+#  Concurrent UNIX Processes and shared memory
+
+SUMMARY:
+
+This project simulates reading from a process and writing to a log file. This project will create one `PRODUCER` process which will read a line
+of text from from a file and writes that line of text to one of five buffers. `PRODUCER` will set a flag once the buffer is full. Once a buffer is full,
+`PRODUCER` will fork `N` `CONSUMERS`, where `N` is obtained via command line arguments. The `CONSUMER` will then take that text and write it into a log
+file. The `CONSUMER` will minimize RACE conditions by checking to see if the log file is open by another `CONSUMER`. The `PRODUCER` is only responsible for 
+forking new `CONSUMER` processes, any necessary signal handling, and allocation/deallocation of shared memory.
+
+USAGE: `master -n NUMBER`
+
+GIT REPOSITORY: https://github.com/teufel0369/OS.git
+
+Select the directory you wish you to put the project in and issue the following:
+
+`git clone https://github.com/teufel0369/OS.git`
+
+VERSION CONTROL LOGGING:
+
+This project was branched to a working branch on 12 February 2018
+
+COMMIT LOGS: `https://github.com/teufel0369/OS/commits/master`
+
+
+
