@@ -1,28 +1,28 @@
 CC=gcc
-CFLAGS = -g -Wall
+CFLAGS = -lrt -g -Wall
 
 all: master producer consumer
 
-master: main.o create.o
-	$(CC) $(CFLAGS) -o proc_fan main.o create.o
+master: main.o common.o
+	$(CC) $(CFLAGS) -o proc_fan main.o common.o
 
-main.o: main.c create.h
+main.o: main.c common.h
 	$(CC) $(CFLAGS) -c main.c
 
 producer: producer.o
 	$(CC) $(CFLAGS) -o producer producer.o
 
-producer.o: producer.c create.h
+producer.o: producer.c common.h
 	$(CC) $(CFLAGS) -c producer.c
 
 consumer: consumer.o
 	$(CC) $(CGLAGS) -o consumer consumer.o
 
-consumer.o: consumer.c create.h
+consumer.o: consumer.c common.h
 	$(CC) $(CFLAGS) -c consumer.c
 
-create.o: create.c create.h
-	$(CC) $(CFLAGS) -c create.c
+common.o: common.c common.h
+	$(CC) $(CFLAGS) -c common.c
 
 .PHONY: clean
 

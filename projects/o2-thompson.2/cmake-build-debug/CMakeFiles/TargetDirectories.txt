@@ -1,0 +1,3 @@
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/cmake-build-debug/CMakeFiles/o2_thompson_2.dir
