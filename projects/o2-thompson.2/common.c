@@ -150,14 +150,14 @@ int detachAndRemove(int shmid, void* shmaddr) {
  * @param       shMemId   shared memory ID
  * @param       shm       shared data structure
  **************************************************/
-void signalHandler(int signal, pid_t* pid, int shMemId, sharedMemory* shm, int numProcesses) {
+void signalHandler(int signal, pid_t* pid, int shMemId, Buffers* shm, int numProcesses) {
     int i, wait_status;
 
     if (signal == SIGINT || signal == SIGALRM) {
         if (signal == SIGINT)
-            printf("Master senses SIGINT\n");
+            printf("MASTER detected SIGINT\n");
         else
-            printf("Master senses SIGALRM\n");
+            printf("MASTER detected SIGALRM\n");
 
         /* send the KILL signal to all processes */
         for (i = 0; i < numProcesses; i++) {
@@ -170,7 +170,7 @@ void signalHandler(int signal, pid_t* pid, int shMemId, sharedMemory* shm, int n
         /* Free other resources then exit */
         free(pid);
         detachAndRemove(shMemId, signal);
-        exit(EXIT_FAILURE);
+        exit(EXIT_SUCCESS);
     }
 }
 
@@ -191,7 +191,7 @@ pid_t* spawnConsumers(int numConsumers, pid_t* pid) {
         pid[i] = fork();
 
         if(pid < 0) {
-            perror("[-]ERROR: MASTER process failed to fork the PRODUCER");
+            perror("[-]ERROR: PRODUCER process failed to fork the CONSUMER process");
             exit(EXIT_FAILURE);
         }
     }

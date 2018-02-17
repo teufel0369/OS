@@ -81,28 +81,28 @@ CMakeFiles/o2_thompson_2.dir/consumer.c.o.provides: CMakeFiles/o2_thompson_2.dir
 CMakeFiles/o2_thompson_2.dir/consumer.c.o.provides.build: CMakeFiles/o2_thompson_2.dir/consumer.c.o
 
 
-CMakeFiles/o2_thompson_2.dir/create.c.o: CMakeFiles/o2_thompson_2.dir/flags.make
-CMakeFiles/o2_thompson_2.dir/create.c.o: ../create.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/o2_thompson_2.dir/create.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/o2_thompson_2.dir/create.c.o   -c /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/create.c
+CMakeFiles/o2_thompson_2.dir/common.c.o: CMakeFiles/o2_thompson_2.dir/flags.make
+CMakeFiles/o2_thompson_2.dir/common.c.o: ../common.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/o2_thompson_2.dir/common.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/o2_thompson_2.dir/common.c.o   -c /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.c
 
-CMakeFiles/o2_thompson_2.dir/create.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/o2_thompson_2.dir/create.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/create.c > CMakeFiles/o2_thompson_2.dir/create.c.i
+CMakeFiles/o2_thompson_2.dir/common.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/o2_thompson_2.dir/common.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.c > CMakeFiles/o2_thompson_2.dir/common.c.i
 
-CMakeFiles/o2_thompson_2.dir/create.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/o2_thompson_2.dir/create.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/create.c -o CMakeFiles/o2_thompson_2.dir/create.c.s
+CMakeFiles/o2_thompson_2.dir/common.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/o2_thompson_2.dir/common.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.c -o CMakeFiles/o2_thompson_2.dir/common.c.s
 
-CMakeFiles/o2_thompson_2.dir/create.c.o.requires:
+CMakeFiles/o2_thompson_2.dir/common.c.o.requires:
 
-.PHONY : CMakeFiles/o2_thompson_2.dir/create.c.o.requires
+.PHONY : CMakeFiles/o2_thompson_2.dir/common.c.o.requires
 
-CMakeFiles/o2_thompson_2.dir/create.c.o.provides: CMakeFiles/o2_thompson_2.dir/create.c.o.requires
-	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/create.c.o.provides.build
-.PHONY : CMakeFiles/o2_thompson_2.dir/create.c.o.provides
+CMakeFiles/o2_thompson_2.dir/common.c.o.provides: CMakeFiles/o2_thompson_2.dir/common.c.o.requires
+	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/common.c.o.provides.build
+.PHONY : CMakeFiles/o2_thompson_2.dir/common.c.o.provides
 
-CMakeFiles/o2_thompson_2.dir/create.c.o.provides.build: CMakeFiles/o2_thompson_2.dir/create.c.o
+CMakeFiles/o2_thompson_2.dir/common.c.o.provides.build: CMakeFiles/o2_thompson_2.dir/common.c.o
 
 
 CMakeFiles/o2_thompson_2.dir/main.c.o: CMakeFiles/o2_thompson_2.dir/flags.make
@@ -156,7 +156,7 @@ CMakeFiles/o2_thompson_2.dir/producer.c.o.provides.build: CMakeFiles/o2_thompson
 # Object files for target o2_thompson_2
 o2_thompson_2_OBJECTS = \
 "CMakeFiles/o2_thompson_2.dir/consumer.c.o" \
-"CMakeFiles/o2_thompson_2.dir/create.c.o" \
+"CMakeFiles/o2_thompson_2.dir/common.c.o" \
 "CMakeFiles/o2_thompson_2.dir/main.c.o" \
 "CMakeFiles/o2_thompson_2.dir/producer.c.o"
 
@@ -164,7 +164,7 @@ o2_thompson_2_OBJECTS = \
 o2_thompson_2_EXTERNAL_OBJECTS =
 
 o2_thompson_2: CMakeFiles/o2_thompson_2.dir/consumer.c.o
-o2_thompson_2: CMakeFiles/o2_thompson_2.dir/create.c.o
+o2_thompson_2: CMakeFiles/o2_thompson_2.dir/common.c.o
 o2_thompson_2: CMakeFiles/o2_thompson_2.dir/main.c.o
 o2_thompson_2: CMakeFiles/o2_thompson_2.dir/producer.c.o
 o2_thompson_2: CMakeFiles/o2_thompson_2.dir/build.make
@@ -178,7 +178,7 @@ CMakeFiles/o2_thompson_2.dir/build: o2_thompson_2
 .PHONY : CMakeFiles/o2_thompson_2.dir/build
 
 CMakeFiles/o2_thompson_2.dir/requires: CMakeFiles/o2_thompson_2.dir/consumer.c.o.requires
-CMakeFiles/o2_thompson_2.dir/requires: CMakeFiles/o2_thompson_2.dir/create.c.o.requires
+CMakeFiles/o2_thompson_2.dir/requires: CMakeFiles/o2_thompson_2.dir/common.c.o.requires
 CMakeFiles/o2_thompson_2.dir/requires: CMakeFiles/o2_thompson_2.dir/main.c.o.requires
 CMakeFiles/o2_thompson_2.dir/requires: CMakeFiles/o2_thompson_2.dir/producer.c.o.requires
 

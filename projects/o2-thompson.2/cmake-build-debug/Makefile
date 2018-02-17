@@ -123,6 +123,33 @@ o2_thompson_2/fast:
 	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/build
 .PHONY : o2_thompson_2/fast
 
+common.o: common.c.o
+
+.PHONY : common.o
+
+# target to build an object file
+common.c.o:
+	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/common.c.o
+.PHONY : common.c.o
+
+common.i: common.c.i
+
+.PHONY : common.i
+
+# target to preprocess a source file
+common.c.i:
+	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/common.c.i
+.PHONY : common.c.i
+
+common.s: common.c.s
+
+.PHONY : common.s
+
+# target to generate assembly for a file
+common.c.s:
+	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/common.c.s
+.PHONY : common.c.s
+
 consumer.o: consumer.c.o
 
 .PHONY : consumer.o
@@ -149,33 +176,6 @@ consumer.s: consumer.c.s
 consumer.c.s:
 	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/consumer.c.s
 .PHONY : consumer.c.s
-
-create.o: create.c.o
-
-.PHONY : create.o
-
-# target to build an object file
-create.c.o:
-	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/create.c.o
-.PHONY : create.c.o
-
-create.i: create.c.i
-
-.PHONY : create.i
-
-# target to preprocess a source file
-create.c.i:
-	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/create.c.i
-.PHONY : create.c.i
-
-create.s: create.c.s
-
-.PHONY : create.s
-
-# target to generate assembly for a file
-create.c.s:
-	$(MAKE) -f CMakeFiles/o2_thompson_2.dir/build.make CMakeFiles/o2_thompson_2.dir/create.c.s
-.PHONY : create.c.s
 
 main.o: main.c.o
 
@@ -240,12 +240,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... o2_thompson_2"
+	@echo "... common.o"
+	@echo "... common.i"
+	@echo "... common.s"
 	@echo "... consumer.o"
 	@echo "... consumer.i"
 	@echo "... consumer.s"
-	@echo "... create.o"
-	@echo "... create.i"
-	@echo "... create.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

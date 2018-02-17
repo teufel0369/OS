@@ -82,13 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.c">
+			<Option target="o2_thompson_2"/>
+		</Unit>
+		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.h">
+			<Option target="o2_thompson_2"/>
+		</Unit>
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/consumer.c">
-			<Option target="o2_thompson_2"/>
-		</Unit>
-		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/create.c">
-			<Option target="o2_thompson_2"/>
-		</Unit>
-		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/create.h">
 			<Option target="o2_thompson_2"/>
 		</Unit>
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/main.c">

@@ -56,15 +56,28 @@ int main(int argc, const char* argv[]) {
         }
     }
 
+    /* Register the signal handler for SIGINT and SIG_ERR */
+    if (signal(SIGINT, signalHandler) == SIG_ERR) {
+        perror("[-]ERROR: Failed to catch signal: SIGINT\n");
+        exit(errno);
+    }
+
+    if (signal(SIGALRM, signalHandler) == SIG_ERR) {
+        perror("Error: Failed to catch signal: SIGALRM\n");
+        exit(errno);
+    }
+
     const char* lineOfText[100];
     char** testArgs = NULL;
     char* delim = " \n";
     int status;
 
 
-    pid = (pid_t *) malloc(sizeof(pid_t) * numConsumers);  /* allocate space for process fan */
+    pid = (pid_t *) malloc(sizeof(pid_t) * (numConsumers + 1));  /* allocate space for process fan. +1 for the PRODUCER */
 
     *pid = fork(); /* fork the producer */
+
+    pid = spawnConsumers(numConsumers, pid);
 
     if(pid == 0) { /* if this is the producer (aka child process) */
 
@@ -80,7 +93,7 @@ int main(int argc, const char* argv[]) {
         exit(EXIT_FAILURE);
     }
 
-
+    while(r_wait(NULL) > 0); /* wait for all remaining children to finish execution */
 }
 
 

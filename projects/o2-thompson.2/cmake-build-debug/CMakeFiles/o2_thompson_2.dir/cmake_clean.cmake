@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/o2_thompson_2.dir/consumer.c.o"
-  "CMakeFiles/o2_thompson_2.dir/create.c.o"
+  "CMakeFiles/o2_thompson_2.dir/common.c.o"
   "CMakeFiles/o2_thompson_2.dir/main.c.o"
   "CMakeFiles/o2_thompson_2.dir/producer.c.o"
   "o2_thompson_2.pdb"
