@@ -18,6 +18,7 @@
 #include <signal.h>
 #include <sys/shm.h>
 #include <limits.h>
+#include <stdbool.h>
 #include "common.h"
 
 /* GLOBAL */
@@ -34,25 +35,32 @@ void print_usage_statement(void);
  * @returns     0 if it runs correctly.
  **************************************************/
 int main(int argc, const char* argv[]) {
+
+    Buffer* sharedMemory;
+    char** testArgs = NULL;
+    char* delim = " \n";
+    const char* lineOfText[100];
+    int status;
     int c;
     int numConsumers;
     int processCount;
 
+    /* check the number of arguments */
     if(argc != 3) {
         perror("\n\nproc_fan: ERROR: Incorrect number of arguments");
         print_usage_statement();
         exit(EXIT_FAILURE);
     }
 
-    while ((c = getopt (argc, argv, "n:")) != -1) {
+    /* get the arguments from getopt */
+    while ((c = getopt (argc, argv, "n")) != -1) {
         switch(c){
             case 'n':
                 numConsumers = atoi(optarg);
                 break;
 
             default:
-                print_usage_statement();
-                exit(EXIT_FAILURE);
+                numConsumers = TEST_NUM_CONSUMERS;
         }
     }
 
@@ -67,17 +75,15 @@ int main(int argc, const char* argv[]) {
         exit(errno);
     }
 
-    const char* lineOfText[100];
-    char** testArgs = NULL;
-    char* delim = " \n";
-    int status;
-
-
+    /* MEMORY ALLOCATION SECTION */
     pid = (pid_t *) malloc(sizeof(pid_t) * (numConsumers + 1));  /* allocate space for process fan. +1 for the PRODUCER */
+    sharedMemory = (Buffer*) malloc(sizeof(Buffer) * DEFAULT_NUM_BUFFERS); /* allocate space for the shared memory structures */
 
     *pid = fork(); /* fork the producer */
 
-    pid = spawnConsumers(numConsumers, pid);
+    pid = spawnConsumers(numConsumers, pid); /* spawn the process fan of consumers */
+
+
 
     if(pid == 0) { /* if this is the producer (aka child process) */
 
@@ -102,8 +108,8 @@ int main(int argc, const char* argv[]) {
  * @abstract    Prints error and usage statement
  **************************************************/
 void print_usage_statement() {
-    char* error = "\n\nproc_fan: Error: You supplied an incorrect number of arguments.";
-    char* usage = "\nUsage: master -n NUMBER < file.data";
+    char* error = "\n\n[-]Error: You supplied an incorrect number of arguments.";
+    char* usage = "\n[-]Usage: master -n NUMBER < file.data";
     perror(error);
     perror(usage);
 }

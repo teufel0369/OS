@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <sys/shm.h>
 #include <signal.h>
+#include <stdbool.h>
 
 /*************************************************!
  * @function    free_makeargv
@@ -150,7 +151,7 @@ int detachAndRemove(int shmid, void* shmaddr) {
  * @param       shMemId   shared memory ID
  * @param       shm       shared data structure
  **************************************************/
-void signalHandler(int signal, pid_t* pid, int shMemId, Buffers* shm, int numProcesses) {
+void signalHandler(int signal, pid_t* pid, int shMemId, int numProcesses) {
     int i, wait_status;
 
     if (signal == SIGINT || signal == SIGALRM) {
@@ -187,7 +188,7 @@ void signalHandler(int signal, pid_t* pid, int shMemId, Buffers* shm, int numPro
 pid_t* spawnConsumers(int numConsumers, pid_t* pid) {
     int i;
 
-    for (i = 0; i <numConsumers; i++) {
+    for (i = 0; i < numConsumers; i++) {
         pid[i] = fork();
 
         if(pid < 0) {
@@ -197,4 +198,25 @@ pid_t* spawnConsumers(int numConsumers, pid_t* pid) {
     }
 
     return pid;
+}
+
+/****************************************************************!
+ * @function    generateSharedMemory
+ *
+ * @abstract    creates an x number of sharedMemory
+ *
+ * @param       numBuffers    number of processes to spawn
+ * @param       sharedMemory  shared memory pointer
+ *
+ * @returns     array of structs if ran successfully
+ ****************************************************************/
+Buffer* generateSharedMemory(int numBuffers, Buffer* sharedMemory) {
+    int i = 0;
+    int id;
+    int key = 101;
+
+    for(i = 0; i < numBuffers; i++) {
+
+        if((id = shmget(key, sizeof(Buffer), )))
+    }
 }

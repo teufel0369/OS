@@ -6,5 +6,6 @@
  * @returns     0 if it runs correctly.
  **************************************************/
 int main(int argc, const char* argv[]) {
-
+    //Todo: Producer needs to check buffer periodically for full
+    //Todo:
 }

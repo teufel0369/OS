@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS = -lrt -g -Wall
+CFLAGS = -g -Wall
 
 all: master producer consumer
 
