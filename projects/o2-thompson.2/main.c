@@ -21,9 +21,6 @@
 #include <stdbool.h>
 #include "common.h"
 
-/* GLOBAL */
-pid_t* pid;
-
 /* prototypes */
 void print_usage_statement(void);
 
@@ -48,7 +45,7 @@ int main(int argc, const char* argv[]) {
 
     /* check the number of arguments */
     if(argc != 3) {
-        perror("\n\nproc_fan: ERROR: Incorrect number of arguments");
+        perror("\n[-]ERROR: Incorrect number of arguments");
         print_usage_statement();
         exit(EXIT_FAILURE);
     }
@@ -57,7 +54,7 @@ int main(int argc, const char* argv[]) {
     while ((c = getopt (argc, argv, "n:")) != -1) {
         switch(c){
             case 'n':
-                numConsumers = atoi(optarg);
+                numConsumers = atoi(optarg) + 1;
                 break;
 
             default:
@@ -65,6 +62,11 @@ int main(int argc, const char* argv[]) {
         }
     }
 
+    /* MEMORY ALLOCATION SECTION */
+    pid_t producer;
+    sharedMemory = (Buffer*) malloc(sizeof(Buffer) * DEFAULT_NUM_BUFFERS); /* allocate space for the shared memory structures */
+    pid_t* consumers = (pid_t *) malloc(sizeof(pid_t) * (numConsumers));  /* allocate space for process fan. */
+    
     /* Register the signal handler for SIGINT and SIG_ERR */
     if (signal(SIGINT, signalHandler) == SIG_ERR) {
         perror("[-]ERROR: Failed to catch signal: SIGINT\n");
@@ -75,30 +77,26 @@ int main(int argc, const char* argv[]) {
         perror("Error: Failed to catch signal: SIGALRM\n");
         exit(errno);
     }
-
-    *pid = fork(); /* fork the producer */
-
-    /* MEMORY ALLOCATION SECTION */
-    sharedMemory = (Buffer*) malloc(sizeof(Buffer) * DEFAULT_NUM_BUFFERS); /* allocate space for the shared memory structures */
-    pid = (pid_t *) malloc(sizeof(pid_t) * (numConsumers));  /* allocate space for process fan. +1 for the PRODUCER */
-
-    /* spawn the process fan of consumers */
-    pid = spawnConsumers(numConsumers, pid);
-
-    if(*pid == 0) { /* if this is the producer (aka child process) */
-        whoAmI(*pid);
+    
+    producer = fork();
+    
+    if(producer == 0) {
+        whoAmI(producer);
+        
+        
+    } else if(producer < 0) {
+        perror("[-]ERROR: MASTER failed to fork a PRODUCER");
+        exit(EXIT_FAILURE);
+    } else {
+        whoAmI(producer);
+        
+    }
+        
 //        /* read in the text */
 //        while(fgets(lineOfText, MAX_CANON, stdin)){
 //            // Todo: read in text here and put in buffer. Allocate shared memory first.
 //        }
 
-        pid = spawnConsumers(numConsumers, pid);
-
-
-    } else if(pid < 0) {
-        perror("[-]ERROR: MASTER process failed to fork the PRODUCER");
-        exit(EXIT_FAILURE);
-    }
 
     while(r_wait(NULL) > 0); /* wait for all remaining children to finish execution */
 }
