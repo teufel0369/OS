@@ -44,6 +44,7 @@ int main(int argc, const char* argv[]) {
     int c;
     int numConsumers;
     int processCount;
+    int i;
 
     /* check the number of arguments */
     if(argc != 3) {
@@ -53,7 +54,7 @@ int main(int argc, const char* argv[]) {
     }
 
     /* get the arguments from getopt */
-    while ((c = getopt (argc, argv, "n")) != -1) {
+    while ((c = getopt (argc, argv, "n:")) != -1) {
         switch(c){
             case 'n':
                 numConsumers = atoi(optarg);
@@ -75,24 +76,24 @@ int main(int argc, const char* argv[]) {
         exit(errno);
     }
 
-    /* MEMORY ALLOCATION SECTION */
-    pid = (pid_t *) malloc(sizeof(pid_t) * (numConsumers + 1));  /* allocate space for process fan. +1 for the PRODUCER */
-    sharedMemory = (Buffer*) malloc(sizeof(Buffer) * DEFAULT_NUM_BUFFERS); /* allocate space for the shared memory structures */
-
     *pid = fork(); /* fork the producer */
 
-    pid = spawnConsumers(numConsumers, pid); /* spawn the process fan of consumers */
+    /* MEMORY ALLOCATION SECTION */
+    sharedMemory = (Buffer*) malloc(sizeof(Buffer) * DEFAULT_NUM_BUFFERS); /* allocate space for the shared memory structures */
+    pid = (pid_t *) malloc(sizeof(pid_t) * (numConsumers));  /* allocate space for process fan. +1 for the PRODUCER */
 
+    /* spawn the process fan of consumers */
+    pid = spawnConsumers(numConsumers, pid);
 
+    if(*pid == 0) { /* if this is the producer (aka child process) */
+        whoAmI(*pid);
+//        /* read in the text */
+//        while(fgets(lineOfText, MAX_CANON, stdin)){
+//            // Todo: read in text here and put in buffer. Allocate shared memory first.
+//        }
 
-    if(pid == 0) { /* if this is the producer (aka child process) */
+        pid = spawnConsumers(numConsumers, pid);
 
-        /* read in the text */
-        while(fgets(lineOfText, MAX_CANON, stdin)){
-            // Todo: read in text here and put in buffer. Allocate shared memory first.
-        }
-
-        pid = spawnConsumers(numConsumers, pid); /* spawn the process fan of consumers */
 
     } else if(pid < 0) {
         perror("[-]ERROR: MASTER process failed to fork the PRODUCER");

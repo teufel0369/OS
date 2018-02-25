@@ -214,9 +214,12 @@ Buffer* generateSharedMemory(int numBuffers, Buffer* sharedMemory) {
     int i = 0;
     int id;
     int key = 101;
+    Buffer* buffer = NULL;
 
-    for(i = 0; i < numBuffers; i++) {
+//    for(i = 0; i < numBuffers; i++) {
+//
+//        if((id = shmget(key, sizeof(Buffer), )))
+//    }
 
-        if((id = shmget(key, sizeof(Buffer), )))
-    }
+    return buffer;
 }

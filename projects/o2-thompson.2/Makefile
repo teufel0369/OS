@@ -4,7 +4,7 @@ CFLAGS = -g -Wall
 all: master producer consumer
 
 master: main.o common.o
-	$(CC) $(CFLAGS) -o proc_fan main.o common.o
+	$(CC) $(CFLAGS) -o master main.o common.o
 
 main.o: main.c common.h
 	$(CC) $(CFLAGS) -c main.c
