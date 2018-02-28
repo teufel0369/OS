@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/consumer.dir/common.c.o CMakeFiles/consumer.dir/consumer.c.o  -o consumer 

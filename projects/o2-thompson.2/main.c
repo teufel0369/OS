@@ -33,12 +33,15 @@ void print_usage_statement(void);
  **************************************************/
 int main(int argc, const char* argv[]) {
 
-    Buffer* sharedMemory;
+    Buffer sharedMemory[5];
+    Buffer* sharedMem = &sharedMemory;
+    pid_t producer;
+    pid_t consumer;
     char** testArgs = NULL;
     char* delim = " \n";
     const char* lineOfText[100];
     int status;
-    int c;
+    int k;
     int numConsumers;
     int processCount;
     int i;
@@ -51,51 +54,38 @@ int main(int argc, const char* argv[]) {
     }
 
     /* get the arguments from getopt */
-    while ((c = getopt (argc, argv, "n:")) != -1) {
-        switch(c){
+    while ((k = getopt (argc, argv, "n:")) != -1) {
+        switch(k){
             case 'n':
-                numConsumers = atoi(optarg) + 1;
+                numConsumers = atoi(optarg);
                 break;
 
             default:
-                numConsumers = TEST_NUM_CONSUMERS;
+                numConsumers = 10;
+                break;
         }
     }
 
-    /* MEMORY ALLOCATION SECTION */
-    pid_t producer;
-    sharedMemory = (Buffer*) malloc(sizeof(Buffer) * DEFAULT_NUM_BUFFERS); /* allocate space for the shared memory structures */
-    pid_t* consumers = (pid_t *) malloc(sizeof(pid_t) * (numConsumers));  /* allocate space for process fan. */
-    
-    /* Register the signal handler for SIGINT and SIG_ERR */
-    if (signal(SIGINT, signalHandler) == SIG_ERR) {
-        perror("[-]ERROR: Failed to catch signal: SIGINT\n");
-        exit(errno);
+    /* Register the signal handler for SIGINT and SIG_ERR events */
+    registerSignalHandler();
+
+    if((producer = fork()) < 0) {
+        perror("[-]ERROR: MASTER failed to fork PRODUCER");
+        exit(EXIT_FAILURE);
+    } else if (producer == 0){
+        whoAmI(producer);
     }
 
-    if (signal(SIGALRM, signalHandler) == SIG_ERR) {
-        perror("Error: Failed to catch signal: SIGALRM\n");
-        exit(errno);
+    for(i = 0; i < numConsumers; i++) {
+        if((consumer = fork()) < 0) {
+            perror("[-]ERROR: MASTER failed to fork CONSUMER");
+            exit(EXIT_FAILURE);
+
+        } else {
+            whoAmI(consumer);
+            break;
+        }
     }
-    
-    producer = fork();
-    
-    if(producer == 0) {
-        whoAmI(producer);
-        
-        
-    } else if(producer < 0) {
-        perror("[-]ERROR: MASTER failed to fork a PRODUCER");
-        exit(EXIT_FAILURE);
-    } else {
-        whoAmI(producer);
-        
-    }
-        
-//        /* read in the text */
-//        while(fgets(lineOfText, MAX_CANON, stdin)){
-//            // Todo: read in text here and put in buffer. Allocate shared memory first.
-//        }
 
 
     while(r_wait(NULL) > 0); /* wait for all remaining children to finish execution */

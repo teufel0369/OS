@@ -176,31 +176,6 @@ void signalHandler(int signal, pid_t* pid, int shMemId, int numProcesses) {
 }
 
 /****************************************************************!
- * @function    spawnConsumers
- *
- * @abstract    creates a process fan of consumers
- *
- * @param       numConsumers    number of processes to spawn
- * @param       pid             process ID pointer
- *
- * @returns     process fan if ran successfully
- ****************************************************************/
-pid_t* spawnConsumers(int numConsumers, pid_t* pid) {
-    int i;
-
-    for (i = 0; i < numConsumers; i++) {
-        pid[i] = fork();
-
-        if(pid < 0) {
-            perror("[-]ERROR: PRODUCER process failed to fork the CONSUMER process");
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    return pid;
-}
-
-/****************************************************************!
  * @function    generateSharedMemory
  *
  * @abstract    creates an x number of sharedMemory
@@ -212,14 +187,31 @@ pid_t* spawnConsumers(int numConsumers, pid_t* pid) {
  ****************************************************************/
 Buffer* generateSharedMemory(int numBuffers, Buffer* sharedMemory) {
     int i = 0;
-    int id;
-    int key = 101;
-    Buffer* buffer = NULL;
 
-//    for(i = 0; i < numBuffers; i++) {
-//
-//        if((id = shmget(key, sizeof(Buffer), )))
-//    }
+    for(i = 0; i < numBuffers; i++) {
+        if((sharedMemory[i].sharedMemoryId = shmget(sharedMemory[i].key, sizeof(Buffer), IPC_CREAT | 0666)) == -1) {
+            perror("[-]ERROR: Failed to create shared memory BUFFER segment");
+            exit(EXIT_FAILURE);
+        }
+    }
 
-    return buffer;
+    return sharedMemory;
+}
+
+/****************************************************************!
+ * @function    registerSignalHandler
+ *
+ * @abstract    registers the signal handler for SIGNAL events
+ ****************************************************************/
+void registerSignalHandler() {
+
+    if (signal(SIGINT, signalHandler) == SIG_ERR) {
+        perror("[-]ERROR: Failed to catch signal: SIGINT\n");
+        exit(errno);
+    }
+
+    if (signal(SIGALRM, signalHandler) == SIG_ERR) {
+        perror("Error: Failed to catch signal: SIGALRM\n");
+        exit(errno);
+    }
 }

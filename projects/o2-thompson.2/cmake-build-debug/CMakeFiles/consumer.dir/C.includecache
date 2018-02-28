@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.c
+common.h
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.h
+stdlib.h
+-
+errno.h
+-
+string.h
+-
+stdio.h
+-
+sys/shm.h
+-
+signal.h
+-
+stdbool.h
+-
+
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.h
+stdio.h
+-
+sys/wait.h
+-
+sys/types.h
+-
+unistd.h
+-
+stdbool.h
+-
+
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/consumer.c
+getopt.h
+-
+stdlib.h
+-
+common.h
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.2/common.h
+
