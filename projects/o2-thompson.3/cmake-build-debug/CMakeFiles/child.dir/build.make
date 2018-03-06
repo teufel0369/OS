@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3
+CMAKE_SOURCE_DIR = /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/child.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/child.dir/flags.make
 
 CMakeFiles/child.dir/child.c.o: CMakeFiles/child.dir/flags.make
 CMakeFiles/child.dir/child.c.o: ../child.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/child.dir/child.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/child.dir/child.c.o   -c /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/child.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/child.dir/child.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/child.dir/child.c.o   -c /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/child.c
 
 CMakeFiles/child.dir/child.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/child.dir/child.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/child.c > CMakeFiles/child.dir/child.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/child.c > CMakeFiles/child.dir/child.c.i
 
 CMakeFiles/child.dir/child.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/child.dir/child.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/child.c -o CMakeFiles/child.dir/child.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/child.c -o CMakeFiles/child.dir/child.c.s
 
 CMakeFiles/child.dir/child.c.o.requires:
 
@@ -81,43 +81,17 @@ CMakeFiles/child.dir/child.c.o.provides: CMakeFiles/child.dir/child.c.o.requires
 CMakeFiles/child.dir/child.c.o.provides.build: CMakeFiles/child.dir/child.c.o
 
 
-CMakeFiles/child.dir/shared.c.o: CMakeFiles/child.dir/flags.make
-CMakeFiles/child.dir/shared.c.o: ../shared.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/child.dir/shared.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/child.dir/shared.c.o   -c /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c
-
-CMakeFiles/child.dir/shared.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/child.dir/shared.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c > CMakeFiles/child.dir/shared.c.i
-
-CMakeFiles/child.dir/shared.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/child.dir/shared.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c -o CMakeFiles/child.dir/shared.c.s
-
-CMakeFiles/child.dir/shared.c.o.requires:
-
-.PHONY : CMakeFiles/child.dir/shared.c.o.requires
-
-CMakeFiles/child.dir/shared.c.o.provides: CMakeFiles/child.dir/shared.c.o.requires
-	$(MAKE) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/shared.c.o.provides.build
-.PHONY : CMakeFiles/child.dir/shared.c.o.provides
-
-CMakeFiles/child.dir/shared.c.o.provides.build: CMakeFiles/child.dir/shared.c.o
-
-
 # Object files for target child
 child_OBJECTS = \
-"CMakeFiles/child.dir/child.c.o" \
-"CMakeFiles/child.dir/shared.c.o"
+"CMakeFiles/child.dir/child.c.o"
 
 # External object files for target child
 child_EXTERNAL_OBJECTS =
 
 child: CMakeFiles/child.dir/child.c.o
-child: CMakeFiles/child.dir/shared.c.o
 child: CMakeFiles/child.dir/build.make
 child: CMakeFiles/child.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable child"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable child"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/child.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -126,7 +100,6 @@ CMakeFiles/child.dir/build: child
 .PHONY : CMakeFiles/child.dir/build
 
 CMakeFiles/child.dir/requires: CMakeFiles/child.dir/child.c.o.requires
-CMakeFiles/child.dir/requires: CMakeFiles/child.dir/shared.c.o.requires
 
 .PHONY : CMakeFiles/child.dir/requires
 
@@ -135,6 +108,6 @@ CMakeFiles/child.dir/clean:
 .PHONY : CMakeFiles/child.dir/clean
 
 CMakeFiles/child.dir/depend:
-	cd /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3 /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3 /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles/child.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles/child.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/child.dir/depend
 

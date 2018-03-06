@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/master.dir/main.c.o"
-  "CMakeFiles/master.dir/shared.c.o"
+  "CMakeFiles/master.dir/master.c.o"
   "master.pdb"
   "master"
 )

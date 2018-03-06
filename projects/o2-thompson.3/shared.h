@@ -1,37 +1,30 @@
+#pragma once
 #ifndef O2_THOMPSON_3_SHARED_H
 #define O2_THOMPSON_3_SHARED_H
 
-#define DEFAULT_MAX_CHILDREN 5
-#define DEFAULT_FILENAME "test.out"
-#define DEFAULT_TIMER_SECS 20
+#include <unistd.h>
 
-typedef struct SharedClock {
+#define SHARED_MEM_KEY 52111
+#define QUEUE_KEY 72417
+#define MASTER_ID 777
+
+typedef struct Process {
+    int pidIndex;
+    pid_t actualPid;
+} Process;
+
+typedef struct SharedMemoryClock {
     int seconds;
     int nanoSeconds;
-} SharedClock;
+} SharedMemoryClock;
 
 typedef struct Message {
-    long mtype;
-
+    long messageType;
     int childId;
-    int doneFlag;
+    int isDone;
     int seconds;
     int nanoSeconds;
 } Message;
 
-typedef struct Process {
-    int logical;
-    pid_t literal;
-} Process;
-
-extern Process *pid;
-extern SharedClock *shm;
-extern int maxChildren;
-extern int maxChildren;
-extern int shmid;
-extern int qid;
-extern char filename[64];
-void displayHelpOptions();
-void masterSignalHandler(int signo);
 
 #endif //O2_THOMPSON_3_SHARED_H

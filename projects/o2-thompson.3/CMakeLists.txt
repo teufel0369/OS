@@ -4,11 +4,10 @@ project(o2_thompson_3 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(master
-        main.c
+        master.c
         shared.h
-        shared.c)
+        )
 
 add_executable(child
         child.c
-        shared.h
-        shared.c)
+        shared.h)

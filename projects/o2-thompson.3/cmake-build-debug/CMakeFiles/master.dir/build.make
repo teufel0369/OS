@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3
+CMAKE_SOURCE_DIR = /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/master.dir/depend.make
@@ -57,67 +57,41 @@ include CMakeFiles/master.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/master.dir/flags.make
 
-CMakeFiles/master.dir/main.c.o: CMakeFiles/master.dir/flags.make
-CMakeFiles/master.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/master.dir/main.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/master.dir/main.c.o   -c /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/main.c
+CMakeFiles/master.dir/master.c.o: CMakeFiles/master.dir/flags.make
+CMakeFiles/master.dir/master.c.o: ../master.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/master.dir/master.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/master.dir/master.c.o   -c /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/master.c
 
-CMakeFiles/master.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/master.dir/main.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/main.c > CMakeFiles/master.dir/main.c.i
+CMakeFiles/master.dir/master.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/master.dir/master.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/master.c > CMakeFiles/master.dir/master.c.i
 
-CMakeFiles/master.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/master.dir/main.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/main.c -o CMakeFiles/master.dir/main.c.s
+CMakeFiles/master.dir/master.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/master.dir/master.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/master.c -o CMakeFiles/master.dir/master.c.s
 
-CMakeFiles/master.dir/main.c.o.requires:
+CMakeFiles/master.dir/master.c.o.requires:
 
-.PHONY : CMakeFiles/master.dir/main.c.o.requires
+.PHONY : CMakeFiles/master.dir/master.c.o.requires
 
-CMakeFiles/master.dir/main.c.o.provides: CMakeFiles/master.dir/main.c.o.requires
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/main.c.o.provides.build
-.PHONY : CMakeFiles/master.dir/main.c.o.provides
+CMakeFiles/master.dir/master.c.o.provides: CMakeFiles/master.dir/master.c.o.requires
+	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.o.provides.build
+.PHONY : CMakeFiles/master.dir/master.c.o.provides
 
-CMakeFiles/master.dir/main.c.o.provides.build: CMakeFiles/master.dir/main.c.o
-
-
-CMakeFiles/master.dir/shared.c.o: CMakeFiles/master.dir/flags.make
-CMakeFiles/master.dir/shared.c.o: ../shared.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/master.dir/shared.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/master.dir/shared.c.o   -c /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c
-
-CMakeFiles/master.dir/shared.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/master.dir/shared.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c > CMakeFiles/master.dir/shared.c.i
-
-CMakeFiles/master.dir/shared.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/master.dir/shared.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c -o CMakeFiles/master.dir/shared.c.s
-
-CMakeFiles/master.dir/shared.c.o.requires:
-
-.PHONY : CMakeFiles/master.dir/shared.c.o.requires
-
-CMakeFiles/master.dir/shared.c.o.provides: CMakeFiles/master.dir/shared.c.o.requires
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/shared.c.o.provides.build
-.PHONY : CMakeFiles/master.dir/shared.c.o.provides
-
-CMakeFiles/master.dir/shared.c.o.provides.build: CMakeFiles/master.dir/shared.c.o
+CMakeFiles/master.dir/master.c.o.provides.build: CMakeFiles/master.dir/master.c.o
 
 
 # Object files for target master
 master_OBJECTS = \
-"CMakeFiles/master.dir/main.c.o" \
-"CMakeFiles/master.dir/shared.c.o"
+"CMakeFiles/master.dir/master.c.o"
 
 # External object files for target master
 master_EXTERNAL_OBJECTS =
 
-master: CMakeFiles/master.dir/main.c.o
-master: CMakeFiles/master.dir/shared.c.o
+master: CMakeFiles/master.dir/master.c.o
 master: CMakeFiles/master.dir/build.make
 master: CMakeFiles/master.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable master"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable master"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/master.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,8 +99,7 @@ CMakeFiles/master.dir/build: master
 
 .PHONY : CMakeFiles/master.dir/build
 
-CMakeFiles/master.dir/requires: CMakeFiles/master.dir/main.c.o.requires
-CMakeFiles/master.dir/requires: CMakeFiles/master.dir/shared.c.o.requires
+CMakeFiles/master.dir/requires: CMakeFiles/master.dir/master.c.o.requires
 
 .PHONY : CMakeFiles/master.dir/requires
 
@@ -135,6 +108,6 @@ CMakeFiles/master.dir/clean:
 .PHONY : CMakeFiles/master.dir/clean
 
 CMakeFiles/master.dir/depend:
-	cd /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3 /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3 /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles/master.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles/master.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/master.dir/depend
 

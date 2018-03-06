@@ -6,43 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/main.c
-getopt.h
--
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/master.c
 stdlib.h
 -
 stdio.h
 -
-errno.h
+string.h
 -
-signal.h
+time.h
 -
-sys/ipc.h
--
-sys/msg.h
--
-sys/shm.h
--
-memory.h
--
-shared.h
-/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.h
-
-/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.c
-stdlib.h
--
-stdio.h
--
-signal.h
+unistd.h
 -
 errno.h
+-
+sys/wait.h
+-
+signal.h
 -
 sys/shm.h
 -
 sys/msg.h
 -
 shared.h
-/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.h
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
 
-/Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/shared.h
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
+unistd.h
+-
 

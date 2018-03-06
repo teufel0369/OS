@@ -1,25 +1,28 @@
 CC=gcc
 CFLAGS = -g -Wall
 
-all: master child
+CHILD_SOURCE=child.c
+CHILD_OBJECTS=$(CHILD_SOURCE:.c=.o)
+CHILD_EXECUTABLE=child
 
-master: main.o shared.o
-	$(CC) $(CFLAGS) -o master main.o shared.o
+MASTER_SOURCE=master.c
+MASTER_OBJECTS=$(MASTER_SOURCE:.c=.o)
+MASTER_EXECUTABLE=oss
 
-main.o: main.c shared.h
-	$(CC) $(CFLAGS) -c main.c
+HEADER=shared.h
 
-child: child.o
-	$(CC) $(CGLAGS) -o child child.o
+all: $(CHILD_EXECUTABLE) $(MASTER_EXECUTABLE)
 
-child.o: child.c shared.h
-	$(CC) $(CFLAGS) -c child.c
+$(CHILD_EXECUTABLE): $(CHILD_OBJECTS)
+	$(CC) $(CHILD_OBJECTS) -o $(CHILD_EXECUTABLE)
 
-shared.o: shared.c shared.h
-	$(CC) $(CFLAGS) -c shared.c
+$(MASTER_EXECUTABLE): $(MASTER_OBJECTS)
+	$(CC) $(MASTER_OBJECTS) -o $(MASTER_EXECUTABLE)
+
+%.o: %.c $(HEADER)
+	$(CC) -c $(CFLAGS) $*.c -o $*.o
 
 .PHONY: clean
 
 clean:
-	rm *.o master child
-
+	rm *.o *.out $(CHILD_EXECUTABLE) $(MASTER_EXECUTABLE)

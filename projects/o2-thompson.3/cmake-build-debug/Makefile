@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3
+CMAKE_SOURCE_DIR = /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/magnificentbastard/OS-Projects/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -163,62 +163,32 @@ child.c.s:
 	$(MAKE) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/child.c.s
 .PHONY : child.c.s
 
-main.o: main.c.o
+master.o: master.c.o
 
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/main.c.s
-.PHONY : main.c.s
-
-shared.o: shared.c.o
-
-.PHONY : shared.o
+.PHONY : master.o
 
 # target to build an object file
-shared.c.o:
-	$(MAKE) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/shared.c.o
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/shared.c.o
-.PHONY : shared.c.o
+master.c.o:
+	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.o
+.PHONY : master.c.o
 
-shared.i: shared.c.i
+master.i: master.c.i
 
-.PHONY : shared.i
+.PHONY : master.i
 
 # target to preprocess a source file
-shared.c.i:
-	$(MAKE) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/shared.c.i
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/shared.c.i
-.PHONY : shared.c.i
+master.c.i:
+	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.i
+.PHONY : master.c.i
 
-shared.s: shared.c.s
+master.s: master.c.s
 
-.PHONY : shared.s
+.PHONY : master.s
 
 # target to generate assembly for a file
-shared.c.s:
-	$(MAKE) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/shared.c.s
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/shared.c.s
-.PHONY : shared.c.s
+master.c.s:
+	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.s
+.PHONY : master.c.s
 
 # Help Target
 help:
@@ -233,12 +203,9 @@ help:
 	@echo "... child.o"
 	@echo "... child.i"
 	@echo "... child.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... shared.o"
-	@echo "... shared.i"
-	@echo "... shared.s"
+	@echo "... master.o"
+	@echo "... master.i"
+	@echo "... master.s"
 .PHONY : help
 
 

@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/child.dir/child.c.o"
-  "CMakeFiles/child.dir/shared.c.o"
   "child.pdb"
   "child"
 )
