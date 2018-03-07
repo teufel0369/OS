@@ -3,6 +3,7 @@
 #include<errno.h>
 #include<sys/shm.h>
 #include<sys/msg.h>
+#include <time.h>
 #include "shared.h"
 
 /* GLOBALS */
@@ -13,8 +14,8 @@ SharedMemoryClock *shm;
 
 /* DECLARATIONS */
 void signalHandler(int signo);
-void sendMessage(int messageType, int isDone);
-void receive(int mtype);
+void sendMessageToMaster(int messageType, int isDone);
+void receiveMessageFromMaster(int messageType);
 
 /*******************************************************!
  * @function    main
@@ -25,7 +26,7 @@ void receive(int mtype);
  *******************************************************/
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        fprintf(stderr, "[-]ERROR: Missing process number.\n");
+        fprintf(stderr, "[-]ERROR: CHILD is missing process number.\n");
         exit(EXIT_FAILURE);
     }
     childId = atoi(argv[1]);
@@ -36,26 +37,41 @@ int main(int argc, char *argv[]) {
         exit(errno);
     }
 
-    /* get the message queue */
+    /* set up the message queue */
     queueId = msgget(QUEUE_KEY, 0600);
 
     /* access the shared memory segment */
     if ((shmid = shmget(SHARED_MEM_KEY, sizeof(SharedMemoryClock), 0600)) < 0) {
-        perror("Error: shmget");
+        perror("[-]ERROR: Failed to create shared memory segment.");
         exit(errno);
     }
 
     /* attach the shared memory */
     shm = shmat(shmid, NULL, 0);
 
-    /* Todo: add in critical section. allocate some time for debugging */
+    srand(time(NULL));
+    int runTime = (rand() % 100000)+ 1;
+    int timeElapsed = 0;
+    while(1) {
+        receiveMessageFromMaster(childId); /* receive message from master to indicate permission to enter critical section */
+        int startCriticalSection = shm->seconds * 1000000000 + shm->nanoSeconds; /* start the clock */
+        sendMessageToMaster(MASTER_ID, 0); /* insert the message into the message queue */
 
+        receiveMessageFromMaster(childId); /* removes a message from the message queue */
+        int endCriticalSectionTime = shm->seconds * 1000000000 + shm->nanoSeconds; /* stop the clock */
+        timeElapsed += endCriticalSectionTime - startCriticalSection; /* calculate the time elapsed */
+        int isDone = (timeElapsed > runTime) ? 1 : 0;
+        printf("CHILD %d Seconds: %d\tNano: %d\n", childId, shm->seconds, shm->nanoSeconds);
+        sendMessageToMaster(MASTER_ID, isDone); /* insert status update into the message queue */
+    }
     return 0;
 }
 
 /*******************************************************!
  * @function    signalHandler
- * @abstract    signal handler for child processes
+ * @abstract    signal handler for child processes;
+ *              really just an empty handler to exit to
+ *              exit successfully
  * @param       signo signal number received
  *******************************************************/
 void signalHandler(int signo) {
@@ -64,20 +80,20 @@ void signalHandler(int signo) {
 
 /*******************************************************!
  * @function    sendMessage
- * @abstract    inserts a message into the messae queue
+ * @abstract    inserts a message into the message queue
  * @param       messageType
  * @param       isDone
  *******************************************************/
-void sendMessage(int messageType, int isDone) {
+void sendMessageToMaster(int messageType, int isDone) {
     Message message;
-    static int msgs = sizeof(Message) - sizeof(long);
+    static int messageSize = sizeof(Message) - sizeof(long); /* calculate the size of the message to send */
     message.messageType = messageType;
     message.childId = childId;
     message.isDone = isDone;
     message.seconds = shm->seconds;
     message.nanoSeconds = shm->nanoSeconds;
 
-    msgsnd(queueId, &message, msgs, 0);
+    msgsnd(queueId, &message, messageSize, 0); /* insert the message into the message queue */
 }
 
 /*******************************************************!
@@ -85,8 +101,8 @@ void sendMessage(int messageType, int isDone) {
  * @abstract    removes a message from the message queue
  * @param       messageType
  *******************************************************/
-void receiveMessage(int messageType) {
+void receiveMessageFromMaster(int messageType) {
     Message message;
-    static int msgs = sizeof(Message) - sizeof(long);
-    msgrcv(queueId, &message, msgs, messageType, 0);
+    static int messageSize = sizeof(Message) - sizeof(long); /* calculate the size of the message to pull */
+    msgrcv(queueId, &message, messageSize, messageType, 0); /* pull the message from the message queue */
 }

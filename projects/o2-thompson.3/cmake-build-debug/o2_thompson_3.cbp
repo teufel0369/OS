@@ -79,8 +79,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="master">
-				<Option output="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/master" prefix_auto="0" extension_auto="0"/>
+			<Target title="oss">
+				<Option output="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/oss" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -94,14 +94,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 master"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 oss"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="master/fast">
-				<Option output="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/master" prefix_auto="0" extension_auto="0"/>
+			<Target title="oss/fast">
+				<Option output="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/oss" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -115,7 +115,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 master/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 oss/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -126,11 +126,11 @@
 			<Option target="child"/>
 		</Unit>
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/master.c">
-			<Option target="master"/>
+			<Option target="oss"/>
 		</Unit>
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h">
 			<Option target="child"/>
-			<Option target="master"/>
+			<Option target="oss"/>
 		</Unit>
 		<Unit filename="/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

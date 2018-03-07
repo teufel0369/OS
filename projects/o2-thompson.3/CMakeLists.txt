@@ -3,7 +3,7 @@ project(o2_thompson_3 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(master
+add_executable(oss
         master.c
         shared.h
         )

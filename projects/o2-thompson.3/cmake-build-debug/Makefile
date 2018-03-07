@@ -124,17 +124,17 @@ child/fast:
 .PHONY : child/fast
 
 #=============================================================================
-# Target rules for targets named master
+# Target rules for targets named oss
 
 # Build rule for target.
-master: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 master
-.PHONY : master
+oss: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 oss
+.PHONY : oss
 
 # fast build rule for target.
-master/fast:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/build
-.PHONY : master/fast
+oss/fast:
+	$(MAKE) -f CMakeFiles/oss.dir/build.make CMakeFiles/oss.dir/build
+.PHONY : oss/fast
 
 child.o: child.c.o
 
@@ -169,7 +169,7 @@ master.o: master.c.o
 
 # target to build an object file
 master.c.o:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.o
+	$(MAKE) -f CMakeFiles/oss.dir/build.make CMakeFiles/oss.dir/master.c.o
 .PHONY : master.c.o
 
 master.i: master.c.i
@@ -178,7 +178,7 @@ master.i: master.c.i
 
 # target to preprocess a source file
 master.c.i:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.i
+	$(MAKE) -f CMakeFiles/oss.dir/build.make CMakeFiles/oss.dir/master.c.i
 .PHONY : master.c.i
 
 master.s: master.c.s
@@ -187,7 +187,7 @@ master.s: master.c.s
 
 # target to generate assembly for a file
 master.c.s:
-	$(MAKE) -f CMakeFiles/master.dir/build.make CMakeFiles/master.dir/master.c.s
+	$(MAKE) -f CMakeFiles/oss.dir/build.make CMakeFiles/oss.dir/master.c.s
 .PHONY : master.c.s
 
 # Help Target
@@ -199,7 +199,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... child"
-	@echo "... master"
+	@echo "... oss"
 	@echo "... child.o"
 	@echo "... child.i"
 	@echo "... child.s"

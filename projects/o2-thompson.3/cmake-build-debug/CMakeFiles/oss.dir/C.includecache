@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/master.c
+stdlib.h
+-
+stdio.h
+-
+unistd.h
+-
+errno.h
+-
+signal.h
+-
+sys/shm.h
+-
+sys/msg.h
+-
+time.h
+-
+string.h
+-
+shared.h
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
+
+/Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
+unistd.h
+-
+

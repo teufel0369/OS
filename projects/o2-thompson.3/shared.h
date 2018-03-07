@@ -4,8 +4,8 @@
 
 #include <unistd.h>
 
-#define SHARED_MEM_KEY 52111
-#define QUEUE_KEY 72417
+#define SHARED_MEM_KEY 10101775
+#define QUEUE_KEY 76251
 #define MASTER_ID 777
 
 typedef struct Process {
@@ -25,6 +25,5 @@ typedef struct Message {
     int seconds;
     int nanoSeconds;
 } Message;
-
 
 #endif //O2_THOMPSON_3_SHARED_H

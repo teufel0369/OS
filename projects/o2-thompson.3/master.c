@@ -7,15 +7,15 @@
 * Github Repo: https://github.com/teufel0369/OS.git
 **********************************************************************/
 
-
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <unistd.h>
 #include <errno.h>
 #include <signal.h>
 #include <sys/shm.h>
 #include <sys/msg.h>
+#include <time.h>
+#include <string.h>
 #include "shared.h"
 
 /* GLOBAL DEFAULTS */
@@ -27,8 +27,10 @@
 /* DECLARATIONS */
 void signalHandler(int);
 int detachAndRemove(int, void*);
-void displayHelp(int;
+void displayHelp(int);
 int getIndex(int);
+void sendMessageToChild(int);
+void receiveMessageFromChild(int);
 
 /* GLOBAL VARIABLES */
 Process *pid;
@@ -114,7 +116,7 @@ int main (int argc, char **argv) {
     queueId = msgget(QUEUE_KEY, IPC_CREAT | 0600);
 
     /* create shared memory segment */
-    if ((shmid = shmget(SHARED_MEM_KEY, sizeof(SharedMemoryClock), IPC_CREAT | 0600)) < 0) {
+    if ((shmid = shmget(SHARED_MEM_KEY, sizeof(struct SharedMemoryClock), IPC_CREAT | 0600)) < 0) {
         perror("[-]ERROR: Failed to create shared memory segment");
         exit(errno);
     }
@@ -139,11 +141,19 @@ int main (int argc, char **argv) {
             perror("[-]ERROR: Failed to fork CHILD process\n");
             exit(errno);
         }
-
     }
 
-    /* Todo: add in critical section tomorrow. allocate some time for debugging.
-     */
+    while (shm->seconds < 2 && numTerminated < TOTAL_PROCESSES) {
+        int i;
+        for(i = 0; i < numChildren; i++) {
+            if(pid[i].pidIndex != -1) { /* if this is not the parent */
+                sendMessageToChild(pid[i].pidIndex); /* send message to notify critical section is free */
+                receiveMessageFromChild(MASTER_ID);  /* receive WAIT for child to enter */
+                sendMessageToChild(pid[i].pidIndex); /* send ok to run */
+                receiveMessageFromChild(MASTER_ID); /* receive WAIT for child to unlock or terminate */
+            }
+        }
+    }
 
      /* kill all child processes */
     for (i = 0; i < numChildren; i++) {
@@ -210,14 +220,14 @@ void signalHandler(int signo) {
 
         /* free other resources then exit */
         free(pid);
-        detachAndRemove(shmid, shm);
-        msgctl(queueId, IPC_RMID, NULL);
+        detachAndRemove(shmid, shm); /* detach and remove all shared memory */
+        msgctl(queueId, IPC_RMID, NULL); /* deallocate the message queue... kind of important to do */
         exit(EXIT_SUCCESS);
     }
 }
 
 /*************************************************!
- * @function    getIndex
+ * @function    displayHelp
  * @abstract    displays a help message if the
  *              the flag is 1
  * @param       hflag
@@ -226,7 +236,7 @@ void displayHelp(int hflag) {
     if (hflag == 1) {
         printf("Options\n");
         printf("\t-h          : Display this message.\n");
-        printf("\t-s x        : Set max slave to 'x'. Defaults to '%d'.\n", DEFAULT_NUM_CHILDREN);
+        printf("\t-s x        : Set number of children to 'x'. Defaults to '%d'.\n", DEFAULT_NUM_CHILDREN);
         printf("\t-l filename : Set file to 'filename'. Defaults to '%s'.\n", DEFAULT_FILENAME);
         printf("\t-t z        : Set time (in seconds) before master terminates. Defaults to '%d'.\n", DEFAULT_TIME_OUT);
         exit(0);
@@ -236,7 +246,7 @@ void displayHelp(int hflag) {
 /*************************************************!
  * @function    getIndex
  * @abstract    get the index from the array of
- *              children... it'll be useful
+ *              children.
  * @param       pidIndex index of the pidIndex
  * @returns     actual index from the pid array
  **************************************************/
@@ -247,4 +257,76 @@ int getIndex(int pidIndex) {
             return i;
 
     return -1;
+}
+
+/*************************************************!
+ * @function    receiveMessageFromChild
+ * @abstract    get the index from the array of
+ *              children... it'll be useful
+ * @param       pidIndex index of the pidIndex
+ * @returns     actual index from the pid array
+ **************************************************/
+void receiveMessageFromChild(int messageType) {
+    FILE *fp;
+    Message message;
+    static int messageSize = sizeof(Message) - sizeof(long); /* calculate the message size to receive */
+    msgrcv(QUEUE_KEY, &message, messageSize, messageType, 0); /* receive the message */
+
+    srand(time(NULL));
+    int runtime = (rand() % 10001)+ 1;
+
+    shm->nanoSeconds += runtime;
+    if(shm->nanoSeconds > 1000000000){
+        ++(shm->seconds);
+        shm->nanoSeconds -= 1000000000;
+    }
+
+    if (message.isDone) {  /* if the message is done being received */
+        int index = getIndex(message.childId); /* get the index of the child array to kill off later */
+        char childId[3];
+
+        kill(pid[index].actualPid, SIGINT); /* send the signal to kill the transmitting child  */
+        int status;
+
+        waitpid(pid[index].actualPid, &status, 0); /* wait for the process to finish */
+        numTerminated++;
+
+        if (nextNum <= TOTAL_PROCESSES) { /* if we haven't hit the max allowable processes */
+
+            pid[index].pidIndex = nextNum++;
+            pid[index].actualPid = fork(); /* fork another child and increment the index (not actual) */
+
+            if (pid[index].actualPid == 0) {  /* if this is the child */
+                sprintf(childId, "%d", pid[index].pidIndex);
+                execl("./child", "./child", childId, NULL); /* execute */
+            }
+            else if (pid[index].actualPid < 0) {
+                perror("[-]ERROR: Failed to fork CHILD process\n");
+                exit(errno);
+            }
+        }
+        else {
+            pid[index].pidIndex = -1; /* because we don't want to  */
+        }
+
+        /* print the message to file */
+        fp = fopen(filename, "a");
+        fprintf(fp, "MASTER: CHILD pid %d is terminating at my time %d.%d because it reached %d, which lived for time %d\n",
+                message.childId, shm->seconds, shm->nanoSeconds, message.seconds, message.nanoSeconds);
+        fclose(fp);
+    }
+}
+
+/*************************************************!
+ * @function    getIndex
+ * @abstract    get the index from the array of
+ *              children... it'll be useful
+ * @param       pidIndex index of the pidIndex
+ * @returns     actual index from the pid array
+ **************************************************/
+void sendMessageToChild(int messageType) {
+    Message message;
+    static int messageSize = sizeof(Message) - sizeof(long);
+    message.messageType = messageType;
+    msgsnd(queueId, &message, messageSize, 0);
 }
