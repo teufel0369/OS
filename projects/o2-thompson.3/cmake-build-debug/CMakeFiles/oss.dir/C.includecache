@@ -11,9 +11,15 @@ stdlib.h
 -
 stdio.h
 -
+string.h
+-
+time.h
+-
 unistd.h
 -
 errno.h
+-
+sys/wait.h
 -
 signal.h
 -
@@ -21,14 +27,8 @@ sys/shm.h
 -
 sys/msg.h
 -
-time.h
--
-string.h
--
 shared.h
 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
 
 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
-unistd.h
--
 

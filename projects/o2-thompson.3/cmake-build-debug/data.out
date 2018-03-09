@@ -1,0 +1,118 @@
+MASTER: CHILD pid -1234632688 is terminating at my time 0.21220 because it reached 0, which lived for time 0
+MASTER: CHILD pid -1234632688 is terminating at my time 0.38196 because it reached 0, which lived for time 0
+MASTER: CHILD pid -1234632344 is terminating at my time 0.55172 because it reached 0, which lived for time 0
+MASTER: CHILD pid -1234632344 is terminating at my time 0.220688 because it reached 0, which lived for time 0
+MASTER: CHILD pid -1234632344 is terminating at my time 0.301324 because it reached 0, which lived for time 0
+MASTER: CHILD pid -1234632344 is terminating at my time 0.301324 because it reached 0, which lived for time 0
+MASTER: CHILD pid -1234632688 is terminating at my time 0.16790 because it reached 106788445, which lived for time 1
+MASTER: CHILD pid -1234632688 is terminating at my time 0.30222 because it reached 106788445, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.43654 because it reached 106788445, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.181332 because it reached 106788445, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.238418 because it reached 106788445, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.238418 because it reached 106788445, which lived for time 1
+MASTER: CHILD pid -1234632648 is terminating at my time 0.498249 because it reached 159622749, which lived for time 1
+MASTER: CHILD pid -1234632648 is terminating at my time 0.817052 because it reached 159622749, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.1973906 because it reached 159622749, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.2027358 because it reached 159622749, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.2689781 because it reached 159622749, which lived for time 1
+MASTER: CHILD pid -1234632344 is terminating at my time 0.2886408 because it reached 159622749, which lived for time 1
+MASTER: CHILD pid -1234632688 is terminating at my time 0.91806 because it reached 2106976318, which lived for time 32767
+MASTER: CHILD pid -1234632688 is terminating at my time 0.11700 because it reached 2106976318, which lived for time 32767
+MASTER: CHILD pid -1234632688 is terminating at my time 0.31480 because it reached 2106976318, which lived for time 32767
+MASTER: CHILD pid -1234632688 is terminating at my time 0.57030 because it reached 2106976318, which lived for time 32767
+MASTER: CHILD pid -1234632688 is terminating at my time 0.122472 because it reached 2106976318, which lived for time 32767
+Master: Child 1 is terminating at my time 0.528992 because it reached 0.524656 in slave
+Master: Child 2 is terminating at my time 0.537664 because it reached 0.533328 in slave
+Master: Child 3 is terminating at my time 0.546336 because it reached 0.542000 in slave
+Master: Child 4 is terminating at my time 0.555008 because it reached 0.550672 in slave
+Master: Child 5 is terminating at my time 0.563680 because it reached 0.559344 in slave
+Master: Child 6 is terminating at my time 0.1092672 because it reached 0.1088336 in slave
+Master: Child 7 is terminating at my time 0.1101344 because it reached 0.1097008 in slave
+Master: Child 8 is terminating at my time 0.1110016 because it reached 0.1105680 in slave
+Master: Child 9 is terminating at my time 0.1118688 because it reached 0.1114352 in slave
+Master: Child 10 is terminating at my time 0.1127360 because it reached 0.1123024 in slave
+Master: Child 11 is terminating at my time 0.1656352 because it reached 0.1652016 in slave
+Master: Child 12 is terminating at my time 0.1665024 because it reached 0.1660688 in slave
+Master: Child 13 is terminating at my time 0.1673696 because it reached 0.1669360 in slave
+Master: Child 14 is terminating at my time 0.1682368 because it reached 0.1678032 in slave
+Master: Child 15 is terminating at my time 0.1691040 because it reached 0.1686704 in slave
+Master: Child 16 is terminating at my time 0.2220032 because it reached 0.2215696 in slave
+Master: Child 17 is terminating at my time 0.2228704 because it reached 0.2224368 in slave
+Master: Child 18 is terminating at my time 0.2237376 because it reached 0.2233040 in slave
+Master: Child 19 is terminating at my time 0.2246048 because it reached 0.2241712 in slave
+Master: Child 20 is terminating at my time 0.2254720 because it reached 0.2250384 in slave
+Master: Child 21 is terminating at my time 0.2783712 because it reached 0.2779376 in slave
+Master: Child 22 is terminating at my time 0.2792384 because it reached 0.2788048 in slave
+Master: Child 23 is terminating at my time 0.2801056 because it reached 0.2796720 in slave
+Master: Child 24 is terminating at my time 0.2809728 because it reached 0.2805392 in slave
+Master: Child 25 is terminating at my time 0.2818400 because it reached 0.2814064 in slave
+Master: Child 26 is terminating at my time 0.3347392 because it reached 0.3343056 in slave
+Master: Child 27 is terminating at my time 0.3356064 because it reached 0.3351728 in slave
+Master: Child 28 is terminating at my time 0.3364736 because it reached 0.3360400 in slave
+Master: Child 29 is terminating at my time 0.3373408 because it reached 0.3369072 in slave
+Master: Child 30 is terminating at my time 0.3382080 because it reached 0.3377744 in slave
+Master: Child 31 is terminating at my time 0.3911072 because it reached 0.3906736 in slave
+Master: Child 32 is terminating at my time 0.3919744 because it reached 0.3915408 in slave
+Master: Child 33 is terminating at my time 0.3928416 because it reached 0.3924080 in slave
+Master: Child 34 is terminating at my time 0.3937088 because it reached 0.3932752 in slave
+Master: Child 35 is terminating at my time 0.3945760 because it reached 0.3941424 in slave
+Master: Child 36 is terminating at my time 0.4474752 because it reached 0.4470416 in slave
+Master: Child 37 is terminating at my time 0.4483424 because it reached 0.4479088 in slave
+Master: Child 38 is terminating at my time 0.4492096 because it reached 0.4487760 in slave
+Master: Child 39 is terminating at my time 0.4500768 because it reached 0.4496432 in slave
+Master: Child 40 is terminating at my time 0.4509440 because it reached 0.4505104 in slave
+Master: Child 41 is terminating at my time 0.5038432 because it reached 0.5034096 in slave
+Master: Child 42 is terminating at my time 0.5047104 because it reached 0.5042768 in slave
+Master: Child 43 is terminating at my time 0.5055776 because it reached 0.5051440 in slave
+Master: Child 44 is terminating at my time 0.5064448 because it reached 0.5060112 in slave
+Master: Child 45 is terminating at my time 0.5073120 because it reached 0.5068784 in slave
+Master: Child 46 is terminating at my time 0.5602112 because it reached 0.5597776 in slave
+Master: Child 47 is terminating at my time 0.5610784 because it reached 0.5606448 in slave
+Master: Child 48 is terminating at my time 0.5619456 because it reached 0.5615120 in slave
+Master: Child 49 is terminating at my time 0.5628128 because it reached 0.5623792 in slave
+Master: Child 50 is terminating at my time 0.5636800 because it reached 0.5632464 in slave
+Master: Child 51 is terminating at my time 0.6165792 because it reached 0.6161456 in slave
+Master: Child 52 is terminating at my time 0.6174464 because it reached 0.6170128 in slave
+Master: Child 53 is terminating at my time 0.6183136 because it reached 0.6178800 in slave
+Master: Child 54 is terminating at my time 0.6191808 because it reached 0.6187472 in slave
+Master: Child 55 is terminating at my time 0.6200480 because it reached 0.6196144 in slave
+Master: Child 56 is terminating at my time 0.6729472 because it reached 0.6725136 in slave
+Master: Child 57 is terminating at my time 0.6738144 because it reached 0.6733808 in slave
+Master: Child 58 is terminating at my time 0.6746816 because it reached 0.6742480 in slave
+Master: Child 59 is terminating at my time 0.6755488 because it reached 0.6751152 in slave
+Master: Child 60 is terminating at my time 0.6764160 because it reached 0.6759824 in slave
+Master: Child 61 is terminating at my time 0.7293152 because it reached 0.7288816 in slave
+Master: Child 62 is terminating at my time 0.7301824 because it reached 0.7297488 in slave
+Master: Child 63 is terminating at my time 0.7310496 because it reached 0.7306160 in slave
+Master: Child 64 is terminating at my time 0.7319168 because it reached 0.7314832 in slave
+Master: Child 65 is terminating at my time 0.7327840 because it reached 0.7323504 in slave
+Master: Child 66 is terminating at my time 0.7856832 because it reached 0.7852496 in slave
+Master: Child 67 is terminating at my time 0.7865504 because it reached 0.7861168 in slave
+Master: Child 68 is terminating at my time 0.7874176 because it reached 0.7869840 in slave
+Master: Child 69 is terminating at my time 0.7882848 because it reached 0.7878512 in slave
+Master: Child 70 is terminating at my time 0.7891520 because it reached 0.7887184 in slave
+Master: Child 71 is terminating at my time 0.8420512 because it reached 0.8416176 in slave
+Master: Child 72 is terminating at my time 0.8429184 because it reached 0.8424848 in slave
+Master: Child 73 is terminating at my time 0.8437856 because it reached 0.8433520 in slave
+Master: Child 74 is terminating at my time 0.8446528 because it reached 0.8442192 in slave
+Master: Child 75 is terminating at my time 0.8455200 because it reached 0.8450864 in slave
+Master: Child 76 is terminating at my time 0.8984192 because it reached 0.8979856 in slave
+Master: Child 77 is terminating at my time 0.8992864 because it reached 0.8988528 in slave
+Master: Child 78 is terminating at my time 0.9001536 because it reached 0.8997200 in slave
+Master: Child 79 is terminating at my time 0.9010208 because it reached 0.9005872 in slave
+Master: Child 80 is terminating at my time 0.9018880 because it reached 0.9014544 in slave
+Master: Child 81 is terminating at my time 0.9547872 because it reached 0.9543536 in slave
+Master: Child 82 is terminating at my time 0.9556544 because it reached 0.9552208 in slave
+Master: Child 83 is terminating at my time 0.9565216 because it reached 0.9560880 in slave
+Master: Child 84 is terminating at my time 0.9573888 because it reached 0.9569552 in slave
+Master: Child 85 is terminating at my time 0.9582560 because it reached 0.9578224 in slave
+Master: Child 86 is terminating at my time 0.10111552 because it reached 0.10107216 in slave
+Master: Child 87 is terminating at my time 0.10120224 because it reached 0.10115888 in slave
+Master: Child 88 is terminating at my time 0.10128896 because it reached 0.10124560 in slave
+Master: Child 89 is terminating at my time 0.10137568 because it reached 0.10133232 in slave
+Master: Child 90 is terminating at my time 0.10146240 because it reached 0.10141904 in slave
+Master: Child 91 is terminating at my time 0.10675232 because it reached 0.10670896 in slave
+Master: Child 92 is terminating at my time 0.10683904 because it reached 0.10679568 in slave
+Master: Child 93 is terminating at my time 0.10692576 because it reached 0.10688240 in slave
+Master: Child 94 is terminating at my time 0.10701248 because it reached 0.10696912 in slave
+Master: Child 95 is terminating at my time 0.10709920 because it reached 0.10705584 in slave

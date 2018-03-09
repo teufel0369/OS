@@ -1,29 +1,26 @@
 #pragma once
 #ifndef O2_THOMPSON_3_SHARED_H
 #define O2_THOMPSON_3_SHARED_H
+#define SHARED_MEM_KEY 1775
+#define QUEUE_KEY 4604
+#define MASTER_ID 369
 
-#include <unistd.h>
-
-#define SHARED_MEM_KEY 10101775
-#define QUEUE_KEY 76251
-#define MASTER_ID 777
-
-typedef struct ProcessStruct {
-    int pidIndex;
-    pid_t actualPid;
-} ProcessType;
-
-typedef struct SharedMemoryClockStruct {
+typedef struct SharedClock {
     int seconds;
     int nanoSeconds;
-} SharedMemoryClockType;
+} SharedMemClock;
 
-typedef struct MessageStruct {
+typedef struct Message {
     long messageType;
     int childId;
-    int isDone;
+    int doneFlag;
     int seconds;
     int nanoSeconds;
-} MessageType;
+} Envelope;
+
+typedef struct ProcessContainer {
+    int pidIndex;
+    pid_t actualPid;
+} Process;
 
 #endif //O2_THOMPSON_3_SHARED_H
