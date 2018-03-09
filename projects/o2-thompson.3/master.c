@@ -24,6 +24,16 @@
 #define DEFAULT_TIME_OUT 20
 #define TOTAL_PROCESSES 100
 
+/* GLOBAL VARIABLES */
+ProcessType* pid;
+int numChildren;
+int shmid;
+int queueId;
+SharedMemoryClockType *shm;
+int nextNum;
+int numTerminated = 0;
+char filename[64];
+
 /* DECLARATIONS */
 void signalHandler(int);
 int detachAndRemove(int, void*);
@@ -31,16 +41,6 @@ void displayHelp(int);
 int getIndex(int);
 void sendMessageToChild(int);
 void receiveMessageFromChild(int);
-
-/* GLOBAL VARIABLES */
-Process *pid;
-int numChildren;
-int shmid;
-int queueId;
-SharedMemoryClock *shm;
-int nextNum;
-int numTerminated = 0;
-char filename[64];
 
 /*************************************************!
  * @function    main
@@ -52,7 +52,6 @@ char filename[64];
 int main (int argc, char **argv) {
     nextNum = 0;
     int i, waitStatus, timeoutSeconds;
-    char childId[3];
     int hflag = 0;
     char *sVal = NULL;
     char *lvalue = NULL; /* because evidently lval, lVal, and lValue are all reserved by other libraries in use ??? */
@@ -110,13 +109,13 @@ int main (int argc, char **argv) {
     nextNum = numChildren + 1;
 
     /* allocate space for pid array */
-    pid = (Process *) malloc(sizeof(Process) * numChildren);
+    pid = (ProcessType* ) malloc(sizeof(ProcessType) * numChildren);
 
     /* create message queue */
     queueId = msgget(QUEUE_KEY, IPC_CREAT | 0600);
 
     /* create shared memory segment */
-    if ((shmid = shmget(SHARED_MEM_KEY, sizeof(struct SharedMemoryClock), IPC_CREAT | 0600)) < 0) {
+    if ((shmid = shmget(SHARED_MEM_KEY, sizeof(SharedMemoryClockType), IPC_CREAT | 0600)) < 0) {
         perror("[-]ERROR: Failed to create shared memory segment");
         exit(errno);
     }
@@ -128,32 +127,46 @@ int main (int argc, char **argv) {
     shm->seconds = 0;
     shm->nanoSeconds = 0;
 
-    /* create the array of pid objects */
     for (i = 0; i < numChildren; i++) {
-        pid[i].pidIndex = i + 1;
-        pid[i].actualPid = fork();
-
-        if (pid[i].actualPid == 0) { /* if this is the child process */
-            sprintf(childId, "%d", pid[i].pidIndex);
-            execl("./child", "./child", childId, NULL); /* run the child executable */
-        }
-        else if (pid[i].actualPid < 0) {
-            perror("[-]ERROR: Failed to fork CHILD process\n");
-            exit(errno);
+        if((pid[i].actualPid = fork()) == 0) {
+            printf("CHILD %d", getpid());
+            exit(EXIT_SUCCESS);
+        } else if(pid[i].actualPid < 0) {
+            perror("failed to fork");
+        } else if (pid[i].actualPid > 0) {
+            printf("PPID: ", getpid());
+            exit(EXIT_SUCCESS);
         }
     }
 
-    while (shm->seconds < 2 && numTerminated < TOTAL_PROCESSES) {
-        int i;
-        for(i = 0; i < numChildren; i++) {
-            if(pid[i].pidIndex != -1) { /* if this is not the parent */
-                sendMessageToChild(pid[i].pidIndex); /* send message to notify critical section is free */
-                receiveMessageFromChild(MASTER_ID);  /* receive WAIT for child to enter */
-                sendMessageToChild(pid[i].pidIndex); /* send ok to run */
-                receiveMessageFromChild(MASTER_ID); /* receive WAIT for child to unlock or terminate */
-            }
-        }
-    }
+//    /* create the array of pid objects */
+//    for (i = 0; i < numChildren; i++) {
+//        pid[i].pidIndex = i + 1;
+//        pid[i].actualPid = fork();
+//
+//        if (pid[i].actualPid == 0) {  /*if this is the child process*/
+//            sprintf(childId, "%d", pid[i].pidIndex);
+//            char* childId = (char*) &pid[i].pidIndex;
+//            execl("child", ".//child", childId, NULL);  /*run the child executable*/
+//            break;
+//        }
+//        else if (pid[i].actualPid < 0) {
+//            perror("[-]ERROR: Failed to fork CHILD process\n");
+//            exit(errno);
+//        }
+//    }
+
+//    while (shm->seconds < 2 && numTerminated < TOTAL_PROCESSES) {
+//        int i;
+//        for(i = 0; i < numChildren; i++) {
+//            if(pid[i].pidIndex != -1) { /* if this is not the parent */
+//                sendMessageToChild(pid[i].pidIndex); /* send message to notify critical section is free */
+//                receiveMessageFromChild(MASTER_ID);  /* receive WAIT for child to enter */
+//                sendMessageToChild(pid[i].pidIndex); /* send ok to run */
+//                receiveMessageFromChild(MASTER_ID); /* receive WAIT for child to unlock or terminate */
+//            }
+//        }
+//    }
 
      /* kill all child processes */
     for (i = 0; i < numChildren; i++) {
@@ -268,8 +281,8 @@ int getIndex(int pidIndex) {
  **************************************************/
 void receiveMessageFromChild(int messageType) {
     FILE *fp;
-    Message message;
-    static int messageSize = sizeof(Message) - sizeof(long); /* calculate the message size to receive */
+    MessageType message;
+    static int messageSize = sizeof(MessageType) - sizeof(long); /* calculate the message size to receive */
     msgrcv(QUEUE_KEY, &message, messageSize, messageType, 0); /* receive the message */
 
     srand(time(NULL));
@@ -283,7 +296,6 @@ void receiveMessageFromChild(int messageType) {
 
     if (message.isDone) {  /* if the message is done being received */
         int index = getIndex(message.childId); /* get the index of the child array to kill off later */
-        char childId[3];
 
         kill(pid[index].actualPid, SIGINT); /* send the signal to kill the transmitting child  */
         int status;
@@ -297,12 +309,14 @@ void receiveMessageFromChild(int messageType) {
             pid[index].actualPid = fork(); /* fork another child and increment the index (not actual) */
 
             if (pid[index].actualPid == 0) {  /* if this is the child */
-                sprintf(childId, "%d", pid[index].pidIndex);
-                execl("./child", "./child", childId, NULL); /* execute */
+                char* childId = (char*) &pid[index].pidIndex;
+                execl("/child", "./child", childId, NULL); /* execute */
             }
             else if (pid[index].actualPid < 0) {
                 perror("[-]ERROR: Failed to fork CHILD process\n");
                 exit(errno);
+            } else {
+                perror("I'm the parent");
             }
         }
         else {
@@ -325,8 +339,8 @@ void receiveMessageFromChild(int messageType) {
  * @returns     actual index from the pid array
  **************************************************/
 void sendMessageToChild(int messageType) {
-    Message message;
-    static int messageSize = sizeof(Message) - sizeof(long);
+    MessageType message;
+    static int messageSize = sizeof(MessageType) - sizeof(long);
     message.messageType = messageType;
     msgsnd(queueId, &message, messageSize, 0);
 }

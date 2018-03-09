@@ -10,7 +10,7 @@
 int childId;
 int shmid;
 int queueId;
-SharedMemoryClock *shm;
+SharedMemoryClockType *shm;
 
 /* DECLARATIONS */
 void signalHandler(int signo);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     queueId = msgget(QUEUE_KEY, 0600);
 
     /* access the shared memory segment */
-    if ((shmid = shmget(SHARED_MEM_KEY, sizeof(SharedMemoryClock), 0600)) < 0) {
+    if ((shmid = shmget(SHARED_MEM_KEY, sizeof(SharedMemoryClockType), 0600)) < 0) {
         perror("[-]ERROR: Failed to create shared memory segment.");
         exit(errno);
     }
@@ -85,8 +85,8 @@ void signalHandler(int signo) {
  * @param       isDone
  *******************************************************/
 void sendMessageToMaster(int messageType, int isDone) {
-    Message message;
-    static int messageSize = sizeof(Message) - sizeof(long); /* calculate the size of the message to send */
+    MessageType message;
+    static int messageSize = sizeof(MessageType) - sizeof(long); /* calculate the size of the message to send */
     message.messageType = messageType;
     message.childId = childId;
     message.isDone = isDone;
@@ -102,7 +102,7 @@ void sendMessageToMaster(int messageType, int isDone) {
  * @param       messageType
  *******************************************************/
 void receiveMessageFromMaster(int messageType) {
-    Message message;
-    static int messageSize = sizeof(Message) - sizeof(long); /* calculate the size of the message to pull */
+    MessageType message;
+    static int messageSize = sizeof(MessageType) - sizeof(long); /* calculate the size of the message to pull */
     msgrcv(queueId, &message, messageSize, messageType, 0); /* pull the message from the message queue */
 }

@@ -19,8 +19,6 @@ sys/msg.h
 -
 time.h
 -
-sys/socket.h
--
 shared.h
 /Users/christhompson/Desktop/Notes/OS/projects/o2-thompson.3/shared.h
 

@@ -8,22 +8,22 @@
 #define QUEUE_KEY 76251
 #define MASTER_ID 777
 
-typedef struct Process {
+typedef struct ProcessStruct {
     int pidIndex;
     pid_t actualPid;
-} Process;
+} ProcessType;
 
-typedef struct SharedMemoryClock {
+typedef struct SharedMemoryClockStruct {
     int seconds;
     int nanoSeconds;
-} SharedMemoryClock;
+} SharedMemoryClockType;
 
-typedef struct Message {
+typedef struct MessageStruct {
     long messageType;
     int childId;
     int isDone;
     int seconds;
     int nanoSeconds;
-} Message;
+} MessageType;
 
 #endif //O2_THOMPSON_3_SHARED_H
