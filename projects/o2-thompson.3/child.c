@@ -18,7 +18,13 @@ void signalHandlerChild(int);
 void sendMessageToMaster(int, int);
 void receiveMessageFromMaster(int);
 
-
+/*******************************************************!
+* @function    main
+* @abstract    runs the show
+* @param       argc
+* @param       argv
+* @return      0 if it doesn't blow up
+*******************************************************/
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         fprintf(stderr, "Error: Missing process Num.\n");

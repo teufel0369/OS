@@ -1,11 +1,12 @@
-/**********************************************************************
+/*********************************************************************************
 * Author: Chris Thompson
-* Project Name: o2-thompson.2
-* Project Desc: The goal of this project demonstrate shared memory and
-*               message passing utilizing message queues.
+* Project Name: o2-thompson.3
+* Project Desc: This project will demonstrate interprocess communication using
+*		message queues to pass messages between processes and shared
+*		memory to
 * Initial Commit: 4 March 2018
 * Github Repo: https://github.com/teufel0369/OS.git
-**********************************************************************/
+*********************************************************************************/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -111,7 +112,7 @@ int main (int argc, char **argv) {
 
     /* create shared memory segment */
     if ((sharedMemId = shmget(SHARED_MEM_KEY, sizeof(SharedMemClock), IPC_CREAT | 0600)) < 0) {
-        perror("Error: shmget");
+        perror("[-]ERROR: Failed to create shared memory segment.");
         exit(errno);
     }
 
