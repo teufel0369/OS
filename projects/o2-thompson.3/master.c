@@ -21,7 +21,7 @@
 #include "shared.h"
 
 #define DEFAULT_NUM_CHILDREN 5
-#define DEFAULT_FILENAME "test.out"
+#define DEFAULT_FILENAME "data.out"
 #define DEFAULT_TIMER 20
 #define TOTAL_PROCESSES 100
 
@@ -36,7 +36,7 @@ int numTerminated = 0;
 char filename[64];
 
 /* PROTOTYPES */
-int get_index(int);
+int getIndex(int);
 int detachAndRemove(int, void*);
 void signalHandlerMaster(int);
 void sendMessageToChild(int);
@@ -51,7 +51,6 @@ void displayHelp(int);
 * @returns     0 if it runs correctly.
 **************************************************/
 int main (int argc, char **argv) {
-
     int i, wait_status, timerAmt;
     char childId[3];
     char *svalue = NULL;
@@ -88,7 +87,7 @@ int main (int argc, char **argv) {
     numChildren = (svalue == NULL) ? DEFAULT_NUM_CHILDREN : atoi(svalue);
     timerAmt = (tvalue == NULL) ? DEFAULT_TIMER : atoi(tvalue);
     (lvalue == NULL) ? strcpy(filename, DEFAULT_FILENAME) : strcpy(filename, lvalue);
-
+    
     indexCounter = numChildren + 1;
 
     /* allocate some memory for the array of processes */
@@ -259,7 +258,7 @@ void receiveMessageFromChild(int messageType) {
     }
 
     if (message.doneFlag) {
-        int index = get_index(message.childId);
+        int index = getIndex(message.childId);
         char childId[3];
 
         kill(pid[index].actualPid, SIGINT);
@@ -267,10 +266,12 @@ void receiveMessageFromChild(int messageType) {
 
         waitpid(pid[index].actualPid, &status, 0);
         numTerminated++;
-
+        
+        fp = fopen(filename, "a");
         if (indexCounter <= TOTAL_PROCESSES) {
             //TODO: add write to file here for creating new CHILD
             pid[index].pidIndex = indexCounter++;
+            fprintf(fp, "\nMASTER: creating new CHILD %d at my time %d.%d", pid[index].pidIndex, shm->seconds, shm->nanoSeconds);
             pid[index].actualPid = fork();
 
             if (pid[index].actualPid == 0) {
@@ -287,8 +288,8 @@ void receiveMessageFromChild(int messageType) {
         }
 
         //TODO: add in seconds and nanoseconds to process struct to keep track of child lifetime... totally glossed over it
-        fp = fopen(filename, "a");
-        fprintf(fp, "\nMaster: Child %d is terminating at my time %d.%d because it reached %d.%d",
+        
+        fprintf(fp, "\nMASTER: CHILD %d is terminating at my time %d.%d because it reached %d.%d",
                 message.childId, shm->seconds, shm->nanoSeconds, message.seconds, message.nanoSeconds);
         fclose(fp);
     }
@@ -301,7 +302,7 @@ void receiveMessageFromChild(int messageType) {
 * @param       pidIndex index of the pidIndex
 * @returns     actual index from the pid array
 **************************************************/
-int get_index(int logical) {
+int getIndex(int logical) {
     int i;
     for(i = 0; i < numChildren; i++)
         if(pid[i].pidIndex == logical)

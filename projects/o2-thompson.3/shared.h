@@ -21,6 +21,8 @@ typedef struct Message {
 typedef struct ProcessContainer {
     int pidIndex;
     pid_t actualPid;
+    int seconds;
+    int nanoSeconds;
 } Process;
 
 #endif //O2_THOMPSON_3_SHARED_H

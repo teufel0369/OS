@@ -5,7 +5,12 @@ SUMMARY:
 This project will create an empty shell of an OS simulator. The project will demonstrate interprocess communication and sharing of resources by message passing amongst processes utilizing Message Queues and Shared Memory. 
 
 USAGE: `./oss -s <NUMBER OF PROCESSES> -l <FILENAME.data> -t <SECONDS TO TIMEOUT>`
-       `./oss -h` will display the `HELP` menu
+       `./oss -h` will display the HELP menu
+
+	If no options are give the:
+		 number of processes will default to 5
+		 filename will default to `data.out`
+		 seconds to timeout willl default to 20				
 
 GIT REPOSITORY: https://github.com/teufel0369/OS.git
 
